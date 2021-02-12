@@ -1,10 +1,10 @@
 ---
 items:
-  - text: Menu One
-    url: "#"
-  - text: Menu Two
+  - text: About Us
+    url: "/aboutus"
+  - text: SailFuture Academy
     url: "#"
   - text: Menu Three
     url: "#"
-  - text: Blog
+  - text: Recent News
     url: "/blog"
