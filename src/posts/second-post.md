@@ -1,19 +1,21 @@
 ---
-title: This is my second post
-description: Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution.
+title: SailFuture Purchases Norwood School as Site for New High School
+description: In December of 2019, SailFuture became the owner of the historic Norwood School building located at 2154 27th Avenue North, St. Petersburg, FL 33713. 
 date: 2020-09-02
-author: Surjith S M
+author: Lindsay Danielson
 tags:
   - number-2
 ---
 
-Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.
+# SailFuture Purchases Norwood School as Site for New High School
 
-## Section Header
+In December of 2019, SailFuture became the owner of the historic Norwood School building located at 2154 27th Avenue North, St. Petersburg, FL 33713.  This site will serve as the SailFuture Academy campus as well as a community Hub that will provide community-based services in addition to  multi-faceted support for teens and families that engage with SailFuture’s case management, independent living, life skills center, and mental health services.  
+
+Constructed in 1923, Norwood School exclusively served elementary students until it was renovated into an alternative secondary school in 2001.  The Pinellas County School Board closed Norwood in 2009, and it has since remained a closed building. 
+
+The acquisition of the Norwood School is significant not only due to its local historical importance but more importantly because SailFuture will use the space to redefine the educational identity of a long-marginalized group of students, the non-traditionally engaged.  Through hands-on learning and real-world application, students who have previously been pushed to the fringes will be placed at the center of their learning experience.  
+
+Students will progress from in-house training in one-of-a-kind skills labs to on-the-job experience via apprenticeships and employment in the SailFuture Kitchen, on commercial and residential construction projects, and in various maritime roles. 
 
 <a href="{{ '/posts/my-first-post/' | url }}">First post</a>
 <a href="{{ '/posts/my-third-big-post/' | url }}">Third post</a>
-
-Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.
-
-Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.

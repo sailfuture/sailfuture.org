@@ -1,60 +1,17 @@
 ---
-title: This is my first post
-description: Capitalize on low hanging fruit to identify a ballpark value added
-  activity to beta test. Override the digital divide with additional
-  clickthroughs from DevOps.
-author: Surjith S M
+title: SailFuture Secures National Funding from The Drexel Fund
+description: We are excited to announce that SailFuture has been selected as a national finalist to receive grant funding from The Drexel Fund.
+author: Lindsay Danielson
 date: 2020-09-01
 tags:
   - left
   - center
   - right
 ---
-# This is a Heading h1
+# SailFuture Secures National Funding from The Drexel Fund h1
 
-## This is a Heading h2
+We are excited to announce that SailFuture was selected as one of The Drexel Fund’s Founders Program Fellows. Not only has this provided SailFuture the opportunity to spread our message and our mission, but most significantly it has enabled SailFuture Academy to become a reality.
 
-###### This is a Heading h6
+The Drexel Fund, a nonprofit venture philanthropy fund, was founded in 2015 and serves to support entrepreneurs focused on launching private schools that serve underrepresented and marginalized communities.
 
-## Emphasis
-
-*This text will be italic*\
-*This will also be italic*
-
-**This text will be bold**\
-**This will also be bold**
-
-*You **can** combine them*
-
-## Lists
-
-### Unordered
-
-* Item 1
-* Item 2
-
-  * Item 2a
-  * Item 2b
-
-### Ordered
-
-1. Item 1
-2. Item 2
-3. Item 3
-
-   1. Item 3a
-   2. Item 3b
-
-## Links
-
-You may be using [Markdown Live Preview](https://markdownlivepreview.com/).
-
-## Blockquotes
-
-> Markdown is a lightweight markup language with plain-text-formatting syntax, created in 2004 by John Gruber with Aaron Swartz.
->
-> > Markdown is often used to format readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor.
-
-## Inline code
-
-This web site is using `markedjs/marked`.
+SailFuture Academy will be an all-boys, year-round school designed to immediately bridge the gap between graduation and a career. Students who are currently disengaged from their high school experience will be placed in the driver’s seat to solve real-world problems from the moment they step foot on campus in order to reinspire and reinforce the power of a purposeful education. Additionally, students will gain industry-specific training in culinary, construction, and maritime skills through hands-on interdisciplinary projects and extended learning labs.
