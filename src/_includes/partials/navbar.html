@@ -29,15 +29,18 @@
 
             {% endif %}
         </div>
-        <div x-data="{ open: false }">
-            <button @click="open = true">Open Dropdown</button>
-        
-            <ul
-                x-show="open"
-                @click.away="open = false"
-            >
-                Dropdown Body
-            </ul>
+        <div x-data="{ show: false }"  @click.away="show = false" class="mb-2">
+            <button @click="show = ! show" type="button" class="flex bg-blue-600 text-gray-200 rounded-lg px-6 py-3 focus:outline-none focus:border-white text-sm">
+            <span class="pr-2">Dropdown Buttons</span> 
+                <svg class="fill-current text-gray-200" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+            </button>
+            <div x-show="show" class="absolute bg-gray-100 z-10 shadow-md" style="min-width:10rem">
+                <a class="block px-3 py-2" href="#">Link 1</a>
+                <a class="block px-3 py-2" href="#">Link 2</a>
+                <a class="block px-3 py-2" href="#">Link 3</a>
+                <hr class="border-t border-gray-200 my-0">
+                <a class="block px-3 py-2" href="#">Another Link</a>
+            </div>
         </div>
     </nav>
 </div>
