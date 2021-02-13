@@ -3,7 +3,7 @@ items:
   - text: About Us
     url: "/aboutus"
   - text: SailFuture Academy
-    url: "#"
+    url: "/academy"
   - text: Menu Three
     url: "#"
   - text: Recent News
