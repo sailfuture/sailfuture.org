@@ -22,6 +22,9 @@
   <body>
     {% include "./partials/navbar.html" %}
     {% include "./partials/heroheader.html" %}
+
+    {{ content | safe }}
+
     {% include "./partials/blogsection.html" %}
     {% include "./partials/footer.html" %}
 
