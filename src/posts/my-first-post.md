@@ -8,7 +8,6 @@ tags:
   - center
   - right
 ---
-# SailFuture Secures National Funding from The Drexel Fund h1
 
 We are excited to announce that SailFuture was selected as one of The Drexel Fund’s Founders Program Fellows. Not only has this provided SailFuture the opportunity to spread our message and our mission, but most significantly it has enabled SailFuture Academy to become a reality.
 

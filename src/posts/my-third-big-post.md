@@ -7,7 +7,6 @@ tags:
   - second-tag
 ---
 
-# SailFuture Begins Construction on New High School
 
 Current SailFuture students and staff began construction at the site of the new SailFuture Academy today which is slated to open in August of 2021.  Initial demolition and the beginning phases of construction are underway, and the current SailFuture students are truly helping build their school from the ground up. 
 
