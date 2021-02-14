@@ -17,10 +17,10 @@ path: get-involved
           <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
             Reach Out To Us
           </h2>
-          <p class="mt-4 text-lg text-gray-500 sm:mt-3">
+          <p class="mt-4 text-lg text-gray-500 sm:mt-3 py-10">
             We’d love to hear from you! Send us a message using the form opposite, or email us. We’d love to hear from you! Send us a message using the form opposite, or email us.
           </p>
-          <form action="/contact-confirmation" name="Contact Submissions" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+          <form action="/contact-confirmation" data-netlify="true" id="contact-form" name="Contact Submissions" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
             <div>
               <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
               <div class="mt-1">
@@ -73,12 +73,6 @@ path: get-involved
                     <input id="budget_50k-100k" name="Donate A Boat" value="Donate A Boat" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                     <label for="budget_50k-100k" class="ml-3">
                       <span class="block text-sm text-gray-700">Donate A Boat</span>
-                    </label>
-                  </div>
-                  <div class="flex items-center">
-                    <input id="budget_over_100k" name="Become An Academic Tutor" value="Become An Academic Tutor" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
-                    <label for="budget_over_100k" class="ml-3">
-                      <span class="block text-sm text-gray-700">Become An Academic Tutor</span>
                     </label>
                   </div>
                   <div class="flex items-center">

@@ -17,11 +17,11 @@
     {% endif %}
   </head>
 
-  <h1> Program Page </h1>
-
   <body>
     {% include "./partials/navbar.html" %}
+    <div class="lg:pt-20 md:pt-16 sm:pt-2">
     {{ content | safe }}
+</div>
     {% include "./partials/footer.html" %}
 
     <script src="/static/js/alpine.js"></script>
