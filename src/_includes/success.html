@@ -19,8 +19,9 @@
   <body>
     {% include "./partials/navbar.html" %}
 
+    <div class="h-screen w-full">
     {{ content | safe }}
-
+    </div>
     {% include "./partials/footer.html" %}
 
     <script src="/static/js/alpine.js"></script>
