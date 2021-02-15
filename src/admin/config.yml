@@ -49,7 +49,7 @@ collections:
             fields:
               - { label: Title, name: text, widget: string }
               - { label: URL, name: url, widget: string }
-      - label: "Quick Links"
+  - label: "Quick Links"
         name: "links"
         file: "src/_data/quicklinks.yaml"
         fields:
@@ -61,7 +61,7 @@ collections:
               - { label: Title, name: title, widget: string }
               - { label: URL, name: url, widget: string }
               - { label: Description, name: desc, widget: string }
-      - label: "Meta Settings"
+  - label: "Meta Settings"
         name: "settings"
         file: "src/_data/settings.yaml"
         fields:
@@ -69,7 +69,7 @@ collections:
           - { label: Author, name: author, widget: string }
           - { label: URL, name: url, widget: string }
 
-      - label: "Programs"
+  - label: "Programs"
         name: "programs"
         file: "src/_data/programs.yaml"
         fields:
@@ -81,7 +81,7 @@ collections:
           - { label: color, name: color, widget: text }
           - { label: bg-color, name: bg-color, widget: text }
 
-      - label: "Projects"
+  - label: "Projects"
         name: "projects"
         file: "src/_data/projects.yaml"
         fields:
