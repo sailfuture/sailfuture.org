@@ -17,7 +17,7 @@ collections:
     folder: "src/posts"
     create: true
     editor:
-      preview: false
+    preview: false
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
@@ -32,10 +32,11 @@ collections:
         multiple: true
         create: true
         options: ["Tags", "created", "from", "config.yml"]
+        
 - label: "Settings"
     name: "settings"
     editor:
-      preview: false
+    preview: false
     files:
       - label: "Navigation"
         name: "items"
@@ -49,6 +50,7 @@ collections:
             fields:
               - { label: Title, name: text, widget: string }
               - { label: URL, name: url, widget: string }
+
 - label: "Quick Links"
     name: "links"
     file: "src/_data/quicklinks.yaml"
@@ -71,8 +73,8 @@ collections:
 
 - label: "Programs"
     name: "programs"
-      file: "src/_data/programs.yaml"
-      fields:
+    file: "src/_data/programs.yaml"
+    fields:
         - { label: Name, name: name, widget: string }
         - { label: category, name: category, widget: string }
         - { label: description, name: description, widget: string }
@@ -83,8 +85,8 @@ collections:
 
 - label: "Projects"
     name: "projects"
-      file: "src/_data/projects.yaml"
-      fields:
+    file: "src/_data/projects.yaml"
+    fields:
         - { label: Name, name: name, widget: string }
         - { label: category, name: category, widget: string }
         - { label: description, name: description, widget: string }
