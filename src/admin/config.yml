@@ -80,3 +80,15 @@ collections:
           - { label: imageurl, name: imageurl, widget: string }
           - { label: color, name: color, widget: text }
           - { label: bg-color, name: bg-color, widget: text }
+
+      - label: "Projects"
+        name: "projects"
+        file: "src/_data/projects.yaml"
+        fields:
+          - { label: Name, name: name, widget: string }
+          - { label: category, name: category, widget: string }
+          - { label: description, name: description, widget: string }
+          - { label: url, name: url, widget: string }
+          - { label: imageurl, name: imageurl, widget: string }
+          - { label: color, name: color, widget: text }
+          - { label: bg-color, name: bg-color, widget: text }
