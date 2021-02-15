@@ -2,24 +2,49 @@
 programs:
   - name: Case Management
     category: Child Welfare
-    description: "This is a program description"
+    description: "Specialized wraparound approach for high-risk teens in foster care"
     url: /casemanagement
-    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613411731/SailFuture%20Academy/Blog%20Posts/60841513_2180199438759194_7252831802975322112_o.jpg
+    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613417097/3220_4886.png
+    color: text-blue-200
+    bg-color: bg-blue-400
+
 
   - name: SailFuture Academy
     category: Private School
-    description: "This is a program description"
-    url: testinghere
-    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613411727/SailFuture%20Academy/Blog%20Posts/27220_5052.jpg
+    description: "An all-boys private high school preparing students for careers and equipping them with the skills to navigate the transition to adulthood. "
+    url: /academy
+    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613417097/Image.png
+    color: text-yellow-200
+    bg-color: bg-yellow-400
 
   - name: Mental Health
     category: Mental Health
     description: "This is a program description"
-    url: testinghere
-    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613411727/SailFuture%20Academy/Blog%20Posts/27220_5052.jpg
+    url: /mentalhealth
+    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613417097/3220_4852.png
+    color: text-green-200
+    bg-color: bg-green-400
 
   - name: Life Skills Center
     category: Child Welfare
     description: "This is a program description"
-    url: testinghere
+    url: /lifeskillscenter
+    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613417097/12919_3448.png
+    color: text-blue-200
+    bg-color: bg-blue-400
+
+  - name: Residential Homes
+    category: Child Welfare
+    description: "Residential programs licensed by the Department of Children and Families rooted in the transformative and therapeutic power of integrated school, therapy, job training, and 60-day international sailing journeys."
+    url: /residential
     imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613411727/SailFuture%20Academy/Blog%20Posts/27220_5052.jpg
+    color: text-blue-200
+    bg-color: bg-blue-400
+
+  - name: Foster Parenting & Licensing
+    category: Child Welfare
+    description: "Helping families and individuals with room in their homes and hearts become foster parents"
+    url: /foster-parent
+    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613417098/B___0076.png
+    color: text-blue-200
+    bg-color: bg-blue-400
