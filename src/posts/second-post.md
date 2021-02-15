@@ -2,6 +2,7 @@
 title: SailFuture Purchases Norwood School as Site for New High School
 description: In December of 2019, SailFuture became the owner of the historic Norwood School building located at 2154 27th Avenue North, St. Petersburg, FL 33713. 
 date: 2020-09-02
+image: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613411711/SailFuture%20Academy/Blog%20Posts/B___0804.jpg
 author: Lindsay Danielson
 tags:
   - number-2

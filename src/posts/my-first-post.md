@@ -1,6 +1,7 @@
 ---
 title: SailFuture Secures National Funding from The Drexel Fund
 description: We are excited to announce that SailFuture has been selected as a national finalist to receive grant funding from The Drexel Fund.
+image: https://res.cloudinary.com/dbhwzxw0k/image/upload/c_scale,q_auto:eco,w_425/v1613411726/SailFuture%20Academy/Blog%20Posts/27220_5066_1.jpg
 author: Lindsay Danielson
 date: 2020-09-01
 tags:
