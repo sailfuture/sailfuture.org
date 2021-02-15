@@ -24,7 +24,20 @@
     </div>
 
     {% include "./partials/blogsection.html" %}
+    {% include "./partials/projectsection.html" %}
     {% include "./partials/footer.html" %}
+
+    {% if programs.programs %}
+
+    {% for item in programs.programs %}
+        <a href="{{item.name}}" target="_blank" class="p-5 border rounded border-gray-200 hover:border-purple-400">
+            <h3>{{item.description}}
+                →</h3>
+            <p>{{item.url}}</p>
+        </a>
+    {% endfor %}
+
+{% endif %}
 
     <script src="/static/js/alpine.js"></script>
 

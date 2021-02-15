@@ -1,0 +1,11 @@
+---
+programs:
+  - name: Residential
+    description: "This is a program description"
+    url: testinghere
+  - name: Residential 02
+    description: "This is a program description"
+    url: testinghere
+    - name: Residential 03
+    description: "This is a program description"
+    url: testinghere
