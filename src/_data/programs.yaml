@@ -4,8 +4,8 @@ programs:
     description: "This is a program description"
     url: testinghere
   - name: Residential 02
-    description: "This is a program description"
+    description: "This is a program description 02"
     url: testinghere
-    - name: Residential 03
-    description: "This is a program description"
-    url: testinghere
+  - name: Residential 03
+    description: "This is a program description 03"
+    url: testinghere2
