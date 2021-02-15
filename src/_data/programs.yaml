@@ -19,7 +19,7 @@ programs:
 
   - name: Mental Health
     category: Mental Health
-    description: "This is a program description"
+    description: "Individualized approaches uniquely designed to engage hard to reach teens"
     url: /mentalhealth
     imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613417097/3220_4852.png
     color: text-green-200
@@ -27,7 +27,7 @@ programs:
 
   - name: Life Skills Center
     category: Child Welfare
-    description: "This is a program description"
+    description: "Accessible daytime supervision and support for youth in crisis"
     url: /lifeskillscenter
     imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613417097/12919_3448.png
     color: text-blue-200
