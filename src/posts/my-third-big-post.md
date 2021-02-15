@@ -2,7 +2,7 @@
 title: SailFuture Begins Construction on New High School
 description: Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.
 date: 2020-09-03
-image: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613411732/SailFuture%20Academy/Blog%20Posts/62046440_2207630436016094_8564683731942506496_o.jpg
+imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613411732/SailFuture%20Academy/Blog%20Posts/62046440_2207630436016094_8564683731942506496_o.jpg
 author: Lindsay Danielson
 tags:
   - second-tag
