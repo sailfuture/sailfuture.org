@@ -12,7 +12,7 @@ public_folder: "/static/img"
 local_backend: true
 # publish_mode: editorial_workflow
 collections:
-  - label: "Blog"
+- label: "Blog"
     name: "blog"
     folder: "src/posts"
     create: true
@@ -32,7 +32,7 @@ collections:
         multiple: true
         create: true
         options: ["Tags", "created", "from", "config.yml"]
-  - label: "Settings"
+- label: "Settings"
     name: "settings"
     editor:
       preview: false
@@ -49,10 +49,10 @@ collections:
             fields:
               - { label: Title, name: text, widget: string }
               - { label: URL, name: url, widget: string }
-  - label: "Quick Links"
-        name: "links"
-        file: "src/_data/quicklinks.yaml"
-        fields:
+- label: "Quick Links"
+    name: "links"
+    file: "src/_data/quicklinks.yaml"
+    fields:
           - label: Nav Items
             name: links
             widget: list
@@ -61,34 +61,34 @@ collections:
               - { label: Title, name: title, widget: string }
               - { label: URL, name: url, widget: string }
               - { label: Description, name: desc, widget: string }
-  - label: "Meta Settings"
-        name: "settings"
-        file: "src/_data/settings.yaml"
-        fields:
-          - { label: Name, name: name, widget: string }
-          - { label: Author, name: author, widget: string }
-          - { label: URL, name: url, widget: string }
+- label: "Meta Settings"
+    name: "settings"
+    file: "src/_data/settings.yaml"
+    fields:
+        - { label: Name, name: name, widget: string }
+        - { label: Author, name: author, widget: string }
+        - { label: URL, name: url, widget: string }
 
-  - label: "Programs"
-        name: "programs"
-        file: "src/_data/programs.yaml"
-        fields:
-          - { label: Name, name: name, widget: string }
-          - { label: category, name: category, widget: string }
-          - { label: description, name: description, widget: string }
-          - { label: url, name: url, widget: string }
-          - { label: imageurl, name: imageurl, widget: string }
-          - { label: color, name: color, widget: text }
-          - { label: bg-color, name: bg-color, widget: text }
+- label: "Programs"
+    name: "programs"
+      file: "src/_data/programs.yaml"
+      fields:
+        - { label: Name, name: name, widget: string }
+        - { label: category, name: category, widget: string }
+        - { label: description, name: description, widget: string }
+        - { label: url, name: url, widget: string }
+        - { label: imageurl, name: imageurl, widget: string }
+        - { label: color, name: color, widget: text }
+        - { label: bg-color, name: bg-color, widget: text }
 
-  - label: "Projects"
-        name: "projects"
-        file: "src/_data/projects.yaml"
-        fields:
-          - { label: Name, name: name, widget: string }
-          - { label: category, name: category, widget: string }
-          - { label: description, name: description, widget: string }
-          - { label: url, name: url, widget: string }
-          - { label: imageurl, name: imageurl, widget: string }
-          - { label: color, name: color, widget: text }
-          - { label: bg-color, name: bg-color, widget: text }
+- label: "Projects"
+    name: "projects"
+      file: "src/_data/projects.yaml"
+      fields:
+        - { label: Name, name: name, widget: string }
+        - { label: category, name: category, widget: string }
+        - { label: description, name: description, widget: string }
+        - { label: url, name: url, widget: string }
+        - { label: imageurl, name: imageurl, widget: string }
+        - { label: color, name: color, widget: text }
+        - { label: bg-color, name: bg-color, widget: text }
