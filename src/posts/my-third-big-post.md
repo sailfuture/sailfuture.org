@@ -13,7 +13,10 @@ Current SailFuture students and staff began construction at the site of the new 
 <br>
 SailFuture Academy is an all-boys high school that is designed to immediately bridge the gap between school and establishing a career after graduation.
 <br>
-![Minion](https://res.cloudinary.com/dbhwzxw0k/image/upload/v1570812746/12139990_831801776932307_5974419264370140447_o.jpg)
+      <figure>
+        <img class="w-full rounded-lg" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&w=1310&h=873&q=80&facepad=3" alt="" width="1310" height="873">
+        <figcaption>Sagittis scelerisque nulla cursus in enim consectetur quam.</figcaption>
+      </figure>
 <br>
 Through hands-on learning that aims to address the practical application of traditional academic content, students will no longer ask, “why do I have to learn this?” and will, instead, be able to apply concepts across a variety of problems and settings.  
 <br>
