@@ -1,7 +1,7 @@
 ---
 title: SailFuture Secures National Funding from The Drexel Fund
 description: We are excited to announce that SailFuture has been selected as a national finalist to receive grant funding from The Drexel Fund.
-imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613363288/SailFuture%20Academy/27220_5056.jpg
+imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613438809/SailFuture%20Academy/Website%20Image%20Collection/Image-4.png
 author: Lindsay Danielson
 date: 2020-09-01
 tags:
@@ -12,9 +12,7 @@ tags:
 
 We are excited to announce that SailFuture was selected as one of The Drexel Fund’s Founders Program Fellows. Not only has this provided SailFuture the opportunity to spread our message and our mission, but most significantly it has enabled SailFuture Academy to become a reality.
 <br><br>
-      <figure>
         <img class="w-full rounded-lg" src="https://res.cloudinary.com/dbhwzxw0k/image/upload/v1570812746/12139990_831801776932307_5974419264370140447_o.jpg" alt="" width="1310" height="873">
-      </figure>
 <br><br>
 The Drexel Fund, a nonprofit venture philanthropy fund, was founded in 2015 and serves to support entrepreneurs focused on launching private schools that serve underrepresented and marginalized communities.  
 <br><br>
