@@ -4,10 +4,10 @@
 
 /*Your Custom CSS Goes here*/
 
-p {
+* {
   font-family: "Decimal A", "Decimal B";
   font-style: normal;
-  font-weight: 400;
+  @apply tracking-tight;
 }
 
 h1 {
