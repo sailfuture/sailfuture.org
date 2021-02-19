@@ -10,12 +10,16 @@
   @apply tracking-tight;
 }
 
+p {
+  @apply text-2xl font-bold mb-3;
+}
+
 h1 {
   @apply text-4xl tracking-tighter mb-3 text-center lg:text-7xl;
 }
 
 h3 {
-  @apply text-2xl font-bold mb-3;
+  @apply text-2xl mb-3;
 }
 
 /* Syntax Highlighting*/
