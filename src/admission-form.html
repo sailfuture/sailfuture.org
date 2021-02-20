@@ -25,11 +25,11 @@ path: academy-form
             <div>
               <label for="first_name" class="block text-sm font-medium text-gray-700">Parent First name</label>
               <div class="mt-1">
-                <input type="text" name="first_name" id="first_name" autocomplete="given-name" class="py-3 border-2 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md" />
+                <input type="text" name="first_name" id="first_name" autocomplete="given-name" required class="py-3 border-2 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md" />
               </div>
             </div>
             <div>
-              <label for="last_name" class="block text-sm font-medium text-gray-700">Parent Last name</label>
+              <label for="last_name" required class="block text-sm font-medium text-gray-700">Parent Last name</label>
               <div class="mt-1">
                 <input type="text" name="last_name" id="last_name" autocomplete="family-name" class="py-3 border-2 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md" />
               </div>
@@ -45,20 +45,20 @@ path: academy-form
             </div> 
 
             <div class="sm:col-span-2">
-              <label for="email" class="block text-sm font-medium text-gray-700">Parent Email</label>
+              <label for="email" required class="block text-sm font-medium text-gray-700">Parent Email</label>
               <div class="mt-1">
                 <input id="email" name="email" type="email" autocomplete="email" class="py-3 border-2 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md" />
               </div>
             </div>
             <div class="sm:col-span-2">
-              <label for="phone_number" class="block text-sm font-medium text-gray-700">Parent 
+              <label for="phone_number" required class="block text-sm font-medium text-gray-700">Parent 
                   Phone Number</label>
               <div class="mt-1 relative rounded-md shadow-sm">
                 <input type="text" name="phone_number" id="phone_number" autocomplete="tel" class="py-3 border-2 px-4 block w-full focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md" placeholder="+1 (727) 987-6543" />
               </div>
             </div>
 
-            <fieldset class="sm:col-span-2 mb-6">
+            <fieldset required class="sm:col-span-2 mb-6">
                 <legend class="block text-sm font-medium text-gray-700">
                   What grade will your student be entering in August 2021?
                 </legend>
@@ -91,7 +91,7 @@ path: academy-form
               </fieldset>
 
               
-              <fieldset class="sm:col-span-2 mb-6">
+              <fieldset required class="sm:col-span-2 mb-6">
                 <legend class="block text-sm font-medium text-gray-700">
                     What would you like to learn more about? (Please check all that apply)
                 </legend>
