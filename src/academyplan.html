@@ -503,13 +503,14 @@ path: academyplan
 
               <!-- SailFuture Button -->
               <div class="relative" x-data="{ isOpen: false }">
-                <button @click="isOpen = !isOpen" class="p-1 bg-gray-200 rounded-full focus:outline-none focus:ring" href="https://sailfuture.org/academy">
+                <button @click="isOpen = !isOpen" class="p-1 bg-gray-200 rounded-full focus:outline-none focus:ring">
+                  <a href="href="https://sailfuture.org/academy">
                   <img
                     class="object-cover w-8 h-8 rounded-full"
                     src="https://s3.us-east-2.amazonaws.com/sailfuture.org/sf_logoround.png"
                     alt="SailFuture"
-                    href="https://sailfuture.org/academy"
                   />
+                </a>
                 </button>
               </div>
             </div>
@@ -590,7 +591,14 @@ path: academyplan
                 </div>
               </div>
             </div>
+
+            <div x-data>
+              <div x-ref="foo">
+                  Testing Testing Testing
+              </div>
+              <button x-on:click="$scroll($refs.foo)">Scroll to foo</scroll>
           </div>
+</div>
 
 
     <!-- 2.0 -->
