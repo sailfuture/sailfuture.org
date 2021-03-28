@@ -50,7 +50,7 @@ path: academyplan
         <!-- sidebar header -->
         <div class="flex items-center justify-between flex-shrink-0 p-2" :class="{'lg:justify-center': !isSidebarOpen}">
           <span class="p-2 text-xl font-semibold leading-8 tracking-wider uppercase whitespace-nowrap">
-            SailFuture<span :class="{'lg:hidden': !isSidebarOpen}">-WD</span>
+            SF<span :class="{'lg:hidden': !isSidebarOpen}"></span>
           </span>
           <button @click="toggleSidbarMenu()" class="p-2 rounded-md lg:hidden">
             <svg
@@ -95,7 +95,7 @@ path: academyplan
 
             <li>
               <a
-                href="#schoolcomponents"
+                href="#SchoolComponents"
                 class="flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100"
                 :class="{'justify-center': !isSidebarOpen}"
               >
@@ -501,13 +501,14 @@ path: academyplan
             <!-- Navbar right -->
             <div class="relative flex items-center space-x-3">
 
-              <!-- avatar button -->
+              <!-- SailFuture Button -->
               <div class="relative" x-data="{ isOpen: false }">
                 <button @click="isOpen = !isOpen" class="p-1 bg-gray-200 rounded-full focus:outline-none focus:ring">
                   <img
                     class="object-cover w-8 h-8 rounded-full"
-                    src="https://avatars0.githubusercontent.com/u/57622665?s=460&u=8f581f4c4acd4c18c33a87b3e6476112325e8b38&v=4"
-                    alt="Ahmed Kamel"
+                    src="s3://sailfuture.org/sf_logoround.png"
+                    alt="SailFuture"
+                    href="http://sailfuture.org/academy"
                   />
                 </button>
               </div>
