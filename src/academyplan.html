@@ -449,6 +449,15 @@ path: academyplan
 <main class="flex-1 max-h-full p-0 overflow-hidden overflow-y-scroll">
 <!-- Main content header -->
 
+  
+  <div class="relative">
+    <div class="absolute inset-0 w-screen h-screen bg-pink-500 text-white flex items-center justify-center text-5xl transition-all ease-in-out duration-1000 transform translate-x-0 slide">Hello</div>
+    <div class="absolute inset-0 w-screen h-screen bg-purple-500 text-white flex items-center justify-center text-5xl transition-all ease-in-out duration-1000 transform translate-x-full slide">There</div>
+    <div class="absolute inset-0 w-screen h-screen bg-teal-500 text-white flex items-center justify-center text-5xl transition-all ease-in-out duration-1000 transform translate-x-full slide">Booya!</div>
+    <div onclick="nextSlide()" class="fixed bottom-0 right-0 bg-white w-16 h-16 flex items-center justify-center text-black cursor-pointer">&#x276F;</div>
+    <div onclick="previousSlide()" class="fixed bottom-0 right-0 bg-white w-16 h-16 mr-16 border-r border-gray-400 flex items-center justify-center text-black cursor-pointer">&#x276E;</div>
+</div>
+
     <!-- 1.0 School Description -->
           <div id="schooldescription">
               <div class="relative bg-indigo-800">
@@ -457,15 +466,15 @@ path: academyplan
                   <div class="absolute inset-0 bg-indigo-800" style="mix-blend-mode: multiply;" aria-hidden="true"></div>
                 </div>
                 <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
-                  <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">Mission</h1>
+                  <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">SailFuture Academy</h1>
                   <p class="mt-6 text-xl text-indigo-100 max-w-3xl">
-                    Disrupt cycles of poverty, abuse, and incarceration through a continuum of social services that leverages sailing-based interventions.
+                    Bridging the gap between high school graduation and a career
                     </p>
                 </div>
               </div>
 
               <!-- Container -->
-              <div class="p-5">
+              <div class="p-5 pt-16 pb-32">
               
                 <!-- 1.1 Top Header -->
                 <div class="lg:text-center">
@@ -476,7 +485,7 @@ path: academyplan
                 </div>
 
               <!-- 1.1 Student Body Container -->
-              <div class="relative bg-white pt-16 pb-32 overflow-hidden">
+              <div class="relative bg-white overflow-hidden">
               <!-- 1.1 Student Body -->
                 <div class="relative">
                   <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
@@ -542,7 +551,8 @@ path: academyplan
 
 
 
-              <!-- Table -->
+              <!-- Enrollment Projection -->
+              <h3 class="mt-6 text-xl">Enrollment Projection</h3>
               <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                   <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -663,9 +673,6 @@ path: academyplan
                   </div>
                 </div>
               </div>
-
-
-
               <!-- End Container -->
             </div>
 <!-- End Section -->
@@ -2004,6 +2011,27 @@ path: academyplan
           isSearchBoxOpen: false,
         }
       }
+
+      function nextSlide(){
+    let activeSlide = document.querySelector('.slide.translate-x-0');
+    activeSlide.classList.remove('translate-x-0');
+    activeSlide.classList.add('-translate-x-full');
+    
+    let nextSlide = activeSlide.nextElementSibling;
+    nextSlide.classList.remove('translate-x-full');
+    nextSlide.classList.add('translate-x-0');
+}
+
+function previousSlide(){
+    let activeSlide = document.querySelector('.slide.translate-x-0');
+    activeSlide.classList.remove('translate-x-0');
+    activeSlide.classList.add('translate-x-full');
+    
+    let previousSlide = activeSlide.previousElementSibling;
+    previousSlide.classList.remove('-translate-x-full');
+    previousSlide.classList.add('translate-x-0');
+}
+
     </script>
   </body>
 </html>
