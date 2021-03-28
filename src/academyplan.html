@@ -4,370 +4,104 @@ title: Academy Business Plan
 path: academyplan
 ---
 
-    <div x-data="setup()" x-init="$refs.loading.classList.add('hidden');" @resize.window="watchScreen()">
-      <div class="flex h-screen antialiased text-gray-900 bg-blue-gray-100 dark:bg-dark dark:text-light">
-        <!-- Loading screen -->
-        <div
-          x-ref="loading"
-          class="fixed inset-0 z-50 flex items-center justify-center text-2xl font-semibold text-white bg-primary-darker"
-        >
-          Loading.....
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Starter Dashboard Layout</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css" />
+    <link rel="stylesheet" href="/build/tailwind.css" />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
+  </head>
+  <body class="antialiased text-gray-900 bg-white">
+    <div
+      class="flex h-screen overflow-y-hidden bg-white"
+      x-data="setup()"
+      x-init="$refs.loading.classList.add('hidden')"
+    >
+      <!-- Loading screen -->
+      <div
+        x-ref="loading"
+        class="fixed inset-0 z-50 flex items-center justify-center text-white bg-black bg-opacity-50"
+        style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"
+      >
+        Loading.....
+      </div>
 
-        <!-- Sidebar -->
-        <div class="flex flex-shrink-0 transition-all">
-          <div
-            x-show="isSidebarOpen"
-            @click="isSidebarOpen = false"
-            class="fixed inset-0 z-10 bg-black bg-opacity-50 lg:hidden"
-          ></div>
-          <div x-show="isSidebarOpen" class="fixed inset-y-0 z-10 w-16 bg-white"></div>
+      <!-- Sidebar backdrop -->
+      <div
+        x-show.in.out.opacity="isSidebarOpen"
+        class="fixed inset-0 z-10 bg-black bg-opacity-20 lg:hidden"
+        style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"
+      ></div>
 
-          <!-- Mobile bottom bar -->
-          <nav
-            aria-label="Options"
-            class="fixed inset-x-0 bottom-0 flex flex-row-reverse items-center justify-between px-4 py-2 bg-white border-t sm:hidden shadow-t border-primary-100 rounded-t-3xl"
-          >
-            <!-- Menu button -->
-            <button
-              @click="(isSidebarOpen && currentSidebarTab == 'linksTab') ? isSidebarOpen = false : isSidebarOpen = true; currentSidebarTab = 'linksTab'"
-              class="p-2 transition-colors rounded-lg shadow-md hover:bg-primary-darker hover:text-white focus:outline-none focus:ring focus:ring-primary focus:ring-offset-white focus:ring-offset-2"
-              :class="(isSidebarOpen && currentSidebarTab == 'linksTab') ? 'text-white bg-primary' : 'text-gray-500 bg-white'"
+      <!-- Sidebar -->
+      <aside
+        x-transition:enter="transition transform duration-300"
+        x-transition:enter-start="-translate-x-full opacity-30  ease-in"
+        x-transition:enter-end="translate-x-0 opacity-100 ease-out"
+        x-transition:leave="transition transform duration-300"
+        x-transition:leave-start="translate-x-0 opacity-100 ease-out"
+        x-transition:leave-end="-translate-x-full opacity-0 ease-in"
+        class="fixed inset-y-0 z-10 flex flex-col flex-shrink-0 w-64 max-h-screen overflow-hidden transition-all transform bg-white border-r shadow-lg lg:z-auto lg:static lg:shadow-none"
+        :class="{'-translate-x-full lg:translate-x-0 lg:w-20': !isSidebarOpen}"
+      >
+        <!-- sidebar header -->
+        <div class="flex items-center justify-between flex-shrink-0 p-2" :class="{'lg:justify-center': !isSidebarOpen}">
+          <span class="p-2 text-xl font-semibold leading-8 tracking-wider uppercase whitespace-nowrap">
+            K<span :class="{'lg:hidden': !isSidebarOpen}">-WD</span>
+          </span>
+          <button @click="toggleSidbarMenu()" class="p-2 rounded-md lg:hidden">
+            <svg
+              class="w-6 h-6 text-gray-600"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              <span class="sr-only">Toggle sidebar</span>
-              <svg
-                aria-hidden="true"
-                class="w-6 h-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <!-- Sidebar links -->
+        <nav class="flex-1 overflow-hidden hover:overflow-y-auto">
+          <ul class="p-2 overflow-hidden">
+            <li>
+              <a
+                href="#"
+                class="flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100"
+                :class="{'justify-center': !isSidebarOpen}"
               >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
-              </svg>
-            </button>
-
-            <!-- Logo -->
-            <a href="#">
-              <img class="w-10 h-auto" src="./assets/images/logo.png" alt="K-UI" />
-            </a>
-
-            <!-- User avatar button -->
-            <div class="relative flex items-center flex-shrink-0 p-2" x-data="{ isOpen: false }">
-              <button
-                @click="isOpen = !isOpen; $nextTick(() => {isOpen ? $refs.userMenu.focus() : null})"
-                class="transition-opacity rounded-lg opacity-80 hover:opacity-100 focus:outline-none focus:ring focus:ring-primary focus:ring-offset-white focus:ring-offset-2"
-              >
-                <img
-                  class="w-8 h-8 rounded-lg shadow-md"
-                  src="https://avatars.githubusercontent.com/u/57622665?s=460&u=8f581f4c4acd4c18c33a87b3e6476112325e8b38&v=4"
-                  alt="Ahmed Kamel"
-                />
-                <span class="sr-only">User menu</span>
-              </button>
-              <div
-                x-show="isOpen"
-                @click.away="isOpen = false"
-                @keydown.escape="isOpen = false"
-                x-ref="userMenu"
-                tabindex="-1"
-                class="absolute w-48 py-1 mt-2 origin-bottom-left bg-white rounded-md shadow-lg left-10 bottom-14 focus:outline-none"
-                role="menu"
-                aria-orientation="vertical"
-                aria-label="user menu"
-              >
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
-                  >Your Profile</a
-                >
-
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Settings</a>
-
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Sign out</a>
-              </div>
-            </div>
-          </nav>
-
-          <!-- Left mini bar -->
-          <nav
-            aria-label="Options"
-            class="z-20 flex-col items-center flex-shrink-0 hidden w-16 py-4 bg-white border-r-2 shadow-md sm:flex rounded-tr-3xl rounded-br-3xl border-primary-100"
-          >
-            <!-- Logo -->
-            <div class="flex-shrink-0 py-4">
-              <a href="#">
-                <img class="w-10 h-auto" src="./assets/images/logo.png" alt="K-UI" />
-              </a>
-            </div>
-            <div class="flex flex-col items-center flex-1 p-2 space-y-4">
-              <!-- Menu button -->
-              <button
-                @click="(isSidebarOpen && currentSidebarTab == 'linksTab') ? isSidebarOpen = false : isSidebarOpen = true; currentSidebarTab = 'linksTab'"
-                class="p-2 transition-colors rounded-lg shadow-md hover:bg-primary-darker hover:text-white focus:outline-none focus:ring focus:ring-primary focus:ring-offset-white focus:ring-offset-2"
-                :class="(isSidebarOpen && currentSidebarTab == 'linksTab') ? 'text-white bg-primary' : 'text-gray-500 bg-white'"
-              >
-                <span class="sr-only">Toggle sidebar</span>
-                <svg
-                  aria-hidden="true"
-                  class="w-6 h-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
-                </svg>
-              </button>
-              <!-- Messages button -->
-              <button
-                @click="(isSidebarOpen && currentSidebarTab == 'messagesTab') ? isSidebarOpen = false : isSidebarOpen = true; currentSidebarTab = 'messagesTab'"
-                class="p-2 transition-colors rounded-lg shadow-md hover:bg-primary-darker hover:text-white focus:outline-none focus:ring focus:ring-primary focus:ring-offset-white focus:ring-offset-2"
-                :class="(isSidebarOpen && currentSidebarTab == 'messagesTab') ? 'text-white bg-primary' : 'text-gray-500 bg-white'"
-              >
-                <span class="sr-only">Toggle message panel</span>
-                <svg
-                  aria-hidden="true"
-                  class="w-6 h-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-                  />
-                </svg>
-              </button>
-              <!-- Notifications button -->
-              <button
-                @click="(isSidebarOpen && currentSidebarTab == 'notificationsTab') ? isSidebarOpen = false : isSidebarOpen = true; currentSidebarTab = 'notificationsTab'"
-                class="p-2 transition-colors rounded-lg shadow-md hover:bg-primary-darker hover:text-white focus:outline-none focus:ring focus:ring-primary focus:ring-offset-white focus:ring-offset-2"
-                :class="(isSidebarOpen && currentSidebarTab == 'notificationsTab') ? 'text-white bg-primary' : 'text-gray-500 bg-white'"
-              >
-                <span class="sr-only">Toggle notifications panel</span>
-                <svg
-                  aria-hidden="true"
-                  class="w-6 h-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                  />
-                </svg>
-              </button>
-            </div>
-
-            <!-- User avatar -->
-            <div class="relative flex items-center flex-shrink-0 p-2" x-data="{ isOpen: false }">
-              <button
-                @click="isOpen = !isOpen; $nextTick(() => {isOpen ? $refs.userMenu.focus() : null})"
-                class="transition-opacity rounded-lg opacity-80 hover:opacity-100 focus:outline-none focus:ring focus:ring-primary focus:ring-offset-white focus:ring-offset-2"
-              >
-                <img
-                  class="w-10 h-10 rounded-lg shadow-md"
-                  src="https://avatars.githubusercontent.com/u/57622665?s=460&u=8f581f4c4acd4c18c33a87b3e6476112325e8b38&v=4"
-                  alt="Ahmed Kamel"
-                />
-                <span class="sr-only">User menu</span>
-              </button>
-              <div
-                x-show="isOpen"
-                @click.away="isOpen = false"
-                @keydown.escape="isOpen = false"
-                x-ref="userMenu"
-                tabindex="-1"
-                class="absolute w-48 py-1 mt-2 origin-bottom-left bg-white rounded-md shadow-lg left-10 bottom-14 focus:outline-none"
-                role="menu"
-                aria-orientation="vertical"
-                aria-label="user menu"
-              >
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
-                  >Your Profile</a
-                >
-
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Settings</a>
-
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Sign out</a>
-              </div>
-            </div>
-          </nav>
-
-          <div
-            x-transition:enter="transform transition-transform duration-300"
-            x-transition:enter-start="-translate-x-full"
-            x-transition:enter-end="translate-x-0"
-            x-transition:leave="transform transition-transform duration-300"
-            x-transition:leave-start="translate-x-0"
-            x-transition:leave-end="-translate-x-full"
-            x-show="isSidebarOpen"
-            class="fixed inset-y-0 left-0 z-10 flex-shrink-0 w-64 bg-white border-r-2 shadow-lg sm:left-16 border-primary-100 rounded-tr-3xl rounded-br-3xl sm:w-72 lg:static lg:w-64"
-          >
-            <nav x-show="currentSidebarTab == 'linksTab'" aria-label="Main" class="flex flex-col h-full">
-              <!-- Logo -->
-              <div class="flex items-center justify-center flex-shrink-0 py-10">
-                <a href="#">
+                <span>
                   <svg
-                    class="text-primary"
-                    width="96"
-                    height="53"
-                    fill="currentColor"
+                    class="w-6 h-6 text-gray-400"
                     xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
                   >
                     <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M7.691 34.703L13.95 28.2 32.09 52h8.087L18.449 23.418 38.594.813h-8.157L7.692 26.125V.812H.941V52h6.75V34.703zm27.61-7.793h17.156v-5.308H35.301v5.308zM89.19 13v22.512c0 3.703-1.02 6.574-3.058 8.613-2.016 2.04-4.934 3.059-8.754 3.059-3.773 0-6.68-1.02-8.719-3.059-2.039-2.063-3.058-4.945-3.058-8.648V.813h-6.68v34.874c.047 5.297 1.734 9.458 5.062 12.481 3.328 3.023 7.793 4.535 13.395 4.535l1.793-.07c5.156-.375 9.234-2.098 12.234-5.168 3.024-3.07 4.547-7.02 4.57-11.848V13h-6.785zM89 8h7V1h-7v7z"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
                     />
                   </svg>
-                </a>
-              </div>
-
-              <div class="flex-1 px-4 space-y-2 overflow-hidden hover:overflow-auto">
-                <a href="#" class="flex items-center w-full space-x-2 text-white rounded-lg bg-primary">
-                  <span aria-hidden="true" class="p-2 rounded-lg bg-primary-dark">
-                    <svg
-                      class="w-6 h-6"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                      />
-                    </svg>
-                  </span>
-                  <span>Home</span>
-                </a>
-                <a
-                  href="#"
-                  class="flex items-center space-x-2 transition-colors rounded-lg group text-primary hover:bg-primary hover:text-white"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="p-2 transition-colors rounded-lg group-hover:bg-primary-dark group-hover:text-white"
-                  >
-                    <svg
-                      class="w-6 h-6"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-                      />
-                    </svg>
-                  </span>
-                  <span>Pages</span>
-                </a>
-              </div>
-
-              <div class="flex-shrink-0 p-4 mt-10">
-                <div class="p-2 space-y-6 rounded-lg bg-blue-gray-100">
-                  <img class="-mt-10" src="./assets/images/undraw_web_developer_p3e5.svg" alt="Not Important" />
-                  <p class="text-sm text-primary">
-                    Use our <span class="text-base text-primary-darker">Premium</span> features now! <br />
-                  </p>
-                  <button
-                    class="w-full px-4 py-2 text-center text-white transition-colors rounded-lg bg-primary hover:bg-primary-dark focus:outline-none focus:ring focus:ring-primary focus:ring-offset-2 focus:ring-offset-blue-gray-100"
-                  >
-                    Upgrade to pro
-                  </button>
-                </div>
-              </div>
-            </nav>
-
-            <section x-show="currentSidebarTab == 'messagesTab'" class="px-4 py-6">
-              <h2 class="text-xl">Messages</h2>
-            </section>
-
-            <section x-show="currentSidebarTab == 'notificationsTab'" class="px-4 py-6">
-              <h2 class="text-xl">Notifications</h2>
-            </section>
-          </div>
-        </div>
-        <div class="flex flex-col flex-1">
-          <header class="relative flex items-center justify-between flex-shrink-0 p-4">
-            <form action="#" class="flex-1">
-              <!--  -->
-            </form>
-            <div class="items-center hidden ml-4 sm:flex">
-              <!-- Settings button -->
-              <button
-                @click="isSettingsPanelOpen = true"
-                class="p-2 mr-4 text-gray-400 bg-white rounded-lg shadow-md hover:text-gray-600 focus:outline-none focus:ring focus:ring-white focus:ring-offset-blue-gray-100 focus:ring-offset-4"
-              >
-                <span class="sr-only">Settings</span>
-                <svg
-                  aria-hidden="true"
-                  class="w-6 h-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-              </button>
-
-              <!-- Github link -->
-              <a
-                href="https://github.com/kamona-ui/dashboard-alpine"
-                target="_blank"
-                class="p-2 text-white bg-black rounded-lg shadow-md hover:text-gray-200 focus:outline-none focus:ring focus:ring-black focus:ring-offset-blue-gray-100 focus:ring-offset-2"
-              >
-                <span class="sr-only">github link</span>
-                <svg
-                  aria-hidden="true"
-                  class="w-6 h-6"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M12.026,2c-5.509,0-9.974,4.465-9.974,9.974c0,4.406,2.857,8.145,6.821,9.465 c0.499,0.09,0.679-0.217,0.679-0.481c0-0.237-0.008-0.865-0.011-1.696c-2.775,0.602-3.361-1.338-3.361-1.338 c-0.452-1.152-1.107-1.459-1.107-1.459c-0.905-0.619,0.069-0.605,0.069-0.605c1.002,0.07,1.527,1.028,1.527,1.028 c0.89,1.524,2.336,1.084,2.902,0.829c0.091-0.645,0.351-1.085,0.635-1.334c-2.214-0.251-4.542-1.107-4.542-4.93 c0-1.087,0.389-1.979,1.024-2.675c-0.101-0.253-0.446-1.268,0.099-2.64c0,0,0.837-0.269,2.742,1.021 c0.798-0.221,1.649-0.332,2.496-0.336c0.849,0.004,1.701,0.115,2.496,0.336c1.906-1.291,2.742-1.021,2.742-1.021 c0.545,1.372,0.203,2.387,0.099,2.64c0.64,0.696,1.024,1.587,1.024,2.675c0,3.833-2.33,4.675-4.552,4.922 c0.355,0.308,0.675,0.916,0.675,1.846c0,1.334-0.012,2.41-0.012,2.737c0,0.267,0.178,0.577,0.687,0.479 C19.146,20.115,22,16.379,22,11.974C22,6.465,17.535,2,12.026,2z"
-                  ></path>
-                </svg>
+                </span>
+                <span :class="{ 'lg:hidden': !isSidebarOpen }">Dashboard</span>
               </a>
-            </div>
-
-            <!-- Mobile sub header button -->
-            <button
-              @click="isSubHeaderOpen = !isSubHeaderOpen"
-              class="p-2 text-gray-400 bg-white rounded-lg shadow-md sm:hidden hover:text-gray-600 focus:outline-none focus:ring focus:ring-white focus:ring-offset-blue-gray-100 focus:ring-offset-4"
-            >
-              <span class="sr-only">More</span>
-
+            </li>
+            <!-- Sidebar Links... -->
+          </ul>
+        </nav>
+        <!-- Sidebar footer -->
+        <div class="flex-shrink-0 p-2 border-t max-h-14">
+          <button
+            class="flex items-center justify-center w-full px-4 py-2 space-x-1 font-medium tracking-wider uppercase bg-gray-100 border rounded-md focus:outline-none focus:ring"
+          >
+            <span>
               <svg
-                aria-hidden="true"
                 class="w-6 h-6"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -378,313 +112,786 @@ path: academyplan
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                 />
               </svg>
-            </button>
+            </span>
+            <span :class="{'lg:hidden': !isSidebarOpen}"> Logout </span>
+          </button>
+        </div>
+      </aside>
 
-            <!-- Mobile sub header -->
-            <div
-              x-transition:enter="transform transition-transform"
-              x-transition:enter-start="translate-y-full opacity-0"
-              x-transition:enter-end="translate-y-0 opacity-100"
-              x-transition:leave="transform transition-transform"
-              x-transition:leave-start="translate-y-0 opacity-100"
-              x-transition:leave-end="translate-y-full opacity-0"
-              x-show="isSubHeaderOpen"
-              @click.away="isSubHeaderOpen = false"
-              class="absolute flex items-center justify-between p-2 bg-white rounded-md shadow-lg sm:hidden top-16 left-5 right-5"
-            >
-              <!-- Seetings button -->
-              <button
-                @click="isSettingsPanelOpen = true; isSubHeaderOpen = false"
-                class="p-2 text-gray-400 bg-white rounded-lg shadow-md hover:text-gray-600 focus:outline-none focus:ring focus:ring-white focus:ring-offset-blue-gray-100 focus:ring-offset-4"
-              >
-                <span class="sr-only">Settings</span>
+      <div class="flex flex-col flex-1 h-full overflow-hidden">
+        <!-- Navbar -->
+        <header class="flex-shrink-0 border-b">
+          <div class="flex items-center justify-between p-2">
+            <!-- Navbar left -->
+            <div class="flex items-center space-x-3">
+              <span class="p-2 text-xl font-semibold tracking-wider uppercase lg:hidden">K-WD</span>
+              <!-- Toggle sidebar button -->
+              <button @click="toggleSidbarMenu()" class="p-2 rounded-md focus:outline-none focus:ring">
                 <svg
-                  aria-hidden="true"
-                  class="w-6 h-6"
+                  class="w-4 h-4 text-gray-600"
+                  :class="{'transform transition-transform -rotate-180': isSidebarOpen}"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
                 </svg>
               </button>
-              <!-- Messages button -->
-              <button
-                @click="isSidebarOpen = true; currentSidebarTab = 'messagesTab'; isSubHeaderOpen = false"
-                class="p-2 text-gray-400 bg-white rounded-lg shadow-md hover:text-gray-600 focus:outline-none focus:ring focus:ring-white focus:ring-offset-blue-gray-100 focus:ring-offset-4"
-              >
-                <span class="sr-only">Toggle message panel</span>
-                <svg
-                  aria-hidden="true"
-                  class="w-6 h-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-                  />
-                </svg>
-              </button>
-              <!-- Notifications button -->
-              <button
-                @click="isSidebarOpen = true; currentSidebarTab = 'notificationsTab'; isSubHeaderOpen = false"
-                class="p-2 text-gray-400 bg-white rounded-lg shadow-md hover:text-gray-600 focus:outline-none focus:ring focus:ring-white focus:ring-offset-blue-gray-100 focus:ring-offset-4"
-              >
-                <span class="sr-only">Toggle notifications panel</span>
-                <svg
-                  aria-hidden="true"
-                  class="w-6 h-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                  />
-                </svg>
-              </button>
-              <!-- Github link -->
-              <a
-                href="https://github.com/kamona-ui/dashboard-alpine"
-                target="_blank"
-                class="p-2 text-white bg-black rounded-lg shadow-md hover:text-gray-200 focus:outline-none focus:ring focus:ring-black focus:ring-offset-blue-gray-100 focus:ring-offset-2"
-              >
-                <span class="sr-only">github link</span>
-                <svg
-                  aria-hidden="true"
-                  class="w-6 h-6"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M12.026,2c-5.509,0-9.974,4.465-9.974,9.974c0,4.406,2.857,8.145,6.821,9.465 c0.499,0.09,0.679-0.217,0.679-0.481c0-0.237-0.008-0.865-0.011-1.696c-2.775,0.602-3.361-1.338-3.361-1.338 c-0.452-1.152-1.107-1.459-1.107-1.459c-0.905-0.619,0.069-0.605,0.069-0.605c1.002,0.07,1.527,1.028,1.527,1.028 c0.89,1.524,2.336,1.084,2.902,0.829c0.091-0.645,0.351-1.085,0.635-1.334c-2.214-0.251-4.542-1.107-4.542-4.93 c0-1.087,0.389-1.979,1.024-2.675c-0.101-0.253-0.446-1.268,0.099-2.64c0,0,0.837-0.269,2.742,1.021 c0.798-0.221,1.649-0.332,2.496-0.336c0.849,0.004,1.701,0.115,2.496,0.336c1.906-1.291,2.742-1.021,2.742-1.021 c0.545,1.372,0.203,2.387,0.099,2.64c0.64,0.696,1.024,1.587,1.024,2.675c0,3.833-2.33,4.675-4.552,4.922 c0.355,0.308,0.675,0.916,0.675,1.846c0,1.334-0.012,2.41-0.012,2.737c0,0.267,0.178,0.577,0.687,0.479 C19.146,20.115,22,16.379,22,11.974C22,6.465,17.535,2,12.026,2z"
-                  ></path>
-                </svg>
-              </a>
             </div>
-          </header>
 
-          <div class="flex flex-1">
-            <!-- Main -->
-            <main class="flex items-center justify-center flex-1 px-4 py-8">
-              <h1 class="text-5xl font-bold text-gray-500">In progress</h1>
-              <!-- This example requires Tailwind CSS v2.0+ -->
-<div class="flex flex-col">
-  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-        <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-gray-50">
-            <tr>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Name
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Title
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Status
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Role
-              </th>
-              <th scope="col" class="relative px-6 py-3">
-                <span class="sr-only">Edit</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody class="bg-white divide-y divide-gray-200">
-            <tr>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="flex items-center">
-                  <div class="flex-shrink-0 h-10 w-10">
-                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixqx=elsP7wYzDE&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
-                  </div>
-                  <div class="ml-4">
-                    <div class="text-sm font-medium text-gray-900">
-                      Jane Cooper
+            <!-- Mobile search box -->
+            <div
+              x-show.transition="isSearchBoxOpen"
+              class="fixed inset-0 z-10 bg-black bg-opacity-20"
+              style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"
+            >
+              <div
+                @click.away="isSearchBoxOpen = false"
+                class="absolute inset-x-0 flex items-center justify-between p-2 bg-white shadow-md"
+              >
+                <div class="flex items-center flex-1 px-2 space-x-2">
+                  <!-- search icon -->
+                  <span>
+                    <svg
+                      class="w-6 h-6 text-gray-500"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
+                  </span>
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    class="w-full px-4 py-3 text-gray-600 rounded-md focus:bg-gray-100 focus:outline-none"
+                  />
+                </div>
+                <!-- close button -->
+                <button @click="isSearchBoxOpen = false" class="flex-shrink-0 p-4 rounded-md">
+                  <svg
+                    class="w-4 h-4 text-gray-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Desktop search box -->
+            <div class="items-center hidden px-2 space-x-2 md:flex-1 md:flex md:mr-auto md:ml-5">
+              <!-- search icon -->
+              <span>
+                <svg
+                  class="w-5 h-5 text-gray-500"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </span>
+              <input
+                type="text"
+                placeholder="Search"
+                class="px-4 py-3 rounded-md hover:bg-gray-100 lg:max-w-sm md:py-2 md:flex-1 focus:outline-none md:focus:bg-gray-100 md:focus:shadow md:focus:border"
+              />
+            </div>
+
+            <!-- Navbar right -->
+            <div class="relative flex items-center space-x-3">
+              <!-- Search button -->
+              <button
+                @click="isSearchBoxOpen = true"
+                class="p-2 bg-gray-100 rounded-full md:hidden focus:outline-none focus:ring hover:bg-gray-200"
+              >
+                <svg
+                  class="w-6 h-6 text-gray-500"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </button>
+
+              <div class="items-center hidden space-x-3 md:flex">
+                <!-- Notification Button -->
+                <div class="relative" x-data="{ isOpen: false }">
+                  <!-- red dot -->
+                  <div class="absolute right-0 p-1 bg-red-400 rounded-full animate-ping"></div>
+                  <div class="absolute right-0 p-1 bg-red-400 border rounded-full"></div>
+                  <button
+                    @click="isOpen = !isOpen"
+                    class="p-2 bg-gray-100 rounded-full hover:bg-gray-200 focus:outline-none focus:ring"
+                  >
+                    <svg
+                      class="w-6 h-6 text-gray-500"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                      />
+                    </svg>
+                  </button>
+
+                  <!-- Dropdown card -->
+                  <div
+                    @click.away="isOpen = false"
+                    x-show.transition.opacity="isOpen"
+                    class="absolute w-48 max-w-md mt-3 transform bg-white rounded-md shadow-lg -translate-x-3/4 min-w-max"
+                  >
+                    <div class="p-4 font-medium border-b">
+                      <span class="text-gray-800">Notification</span>
                     </div>
-                    <div class="text-sm text-gray-500">
-                      jane.cooper@example.com
+                    <ul class="flex flex-col p-2 my-2 space-y-1">
+                      <li>
+                        <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Link</a>
+                      </li>
+                      <li>
+                        <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Another Link</a>
+                      </li>
+                    </ul>
+                    <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
+                      <a href="#">See All</a>
                     </div>
                   </div>
                 </div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">Regional Paradigm Technician</div>
-                <div class="text-sm text-gray-500">Optimization</div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  Active
-                </span>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                Admin
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-              </td>
-            </tr>
 
-            <!-- More items... -->
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+                <!-- Services Button -->
+                <div x-data="{ isOpen: false }">
+                  <button
+                    @click="isOpen = !isOpen"
+                    class="p-2 bg-gray-100 rounded-full hover:bg-gray-200 focus:outline-none focus:ring"
+                  >
+                    <svg
+                      class="w-6 h-6 text-gray-500"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                      />
+                    </svg>
+                  </button>
 
-<!--
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/typography'),
-    ]
-  }
-  ```
--->
-<div class="relative py-16 bg-white overflow-hidden">
-  <div class="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
-    <div class="relative h-full text-lg max-w-prose mx-auto" aria-hidden="true">
-      <svg class="absolute top-12 left-full transform translate-x-32" width="404" height="384" fill="none" viewBox="0 0 404 384">
-        <defs>
-          <pattern id="74b3fd99-0a6f-4271-bef2-e80eeafdf357" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-            <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-          </pattern>
-        </defs>
-        <rect width="404" height="384" fill="url(#74b3fd99-0a6f-4271-bef2-e80eeafdf357)" />
-      </svg>
-      <svg class="absolute top-1/2 right-full transform -translate-y-1/2 -translate-x-32" width="404" height="384" fill="none" viewBox="0 0 404 384">
-        <defs>
-          <pattern id="f210dbf6-a58d-4871-961e-36d5016a0f49" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-            <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-          </pattern>
-        </defs>
-        <rect width="404" height="384" fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)" />
-      </svg>
-      <svg class="absolute bottom-12 left-full transform translate-x-32" width="404" height="384" fill="none" viewBox="0 0 404 384">
-        <defs>
-          <pattern id="d3eb07ae-5182-43e6-857d-35c643af9034" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-            <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-          </pattern>
-        </defs>
-        <rect width="404" height="384" fill="url(#d3eb07ae-5182-43e6-857d-35c643af9034)" />
-      </svg>
-    </div>
-  </div>
-  <div class="relative px-4 sm:px-6 lg:px-8">
-    <div class="text-lg max-w-prose mx-auto">
-      <h1>
-        <span class="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">Introducing</span>
-        <span class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">JavaScript for Beginners</span>
-      </h1>
-      <p class="mt-8 text-xl text-gray-500 leading-8">Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque id at vitae feugiat egestas ac. Diam nulla orci at in viverra scelerisque eget. Eleifend egestas fringilla sapien.</p>
-    </div>
-    <div class="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
-      <p>Faucibus commodo massa rhoncus, volutpat. <strong>Dignissim</strong> sed <strong>eget risus enim</strong>. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit. Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. <a href="#">Mattis mauris semper</a> sed amet vitae sed turpis id.</p>
-      <ul>
-        <li>Quis elit egestas venenatis mattis dignissim.</li>
-        <li>Cras cras lobortis vitae vivamus ultricies facilisis tempus.</li>
-        <li>Orci in sit morbi dignissim metus diam arcu pretium.</li>
-      </ul>
-      <p>Quis semper vulputate aliquam venenatis egestas sagittis quisque orci. Donec commodo sit viverra aliquam porttitor ultrices gravida eu. Tincidunt leo, elementum mattis elementum ut nisl, justo, amet, mattis. Nunc purus, diam commodo tincidunt turpis. Amet, duis sed elit interdum dignissim.</p>
-      <h2>From beginner to expert in 30 days</h2>
-      <p>Id orci tellus laoreet id ac. Dolor, aenean leo, ac etiam consequat in. Convallis arcu ipsum urna nibh. Pharetra, euismod vitae interdum mauris enim, consequat vulputate nibh. Maecenas pellentesque id sed tellus mauris, ultrices mauris. Tincidunt enim cursus ridiculus mi. Pellentesque nam sed nullam sed diam turpis ipsum eu a sed convallis diam.</p>
-      <blockquote>
-        <p>Sagittis scelerisque nulla cursus in enim consectetur quam. Dictum urna sed consectetur neque tristique pellentesque. Blandit amet, sed aenean erat arcu morbi.</p>
-      </blockquote>
-      <p>Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit.</p>
-      <figure>
-        <img class="w-full rounded-lg" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&w=1310&h=873&q=80&facepad=3" alt="" width="1310" height="873">
-        <figcaption>Sagittis scelerisque nulla cursus in enim consectetur quam.</figcaption>
-      </figure>
-      <h2>Everything you need to get up and running</h2>
-      <p>Purus morbi dignissim senectus mattis <a href="#">adipiscing</a>. Amet, massa quam varius orci dapibus volutpat cras. In amet eu ridiculus leo sodales cursus tristique. Tincidunt sed tempus ut viverra ridiculus non molestie. Gravida quis fringilla amet eget dui tempor dignissim. Facilisis auctor venenatis varius nunc, congue erat ac. Cras fermentum convallis quam.</p>
-      <p>Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit.</p>
-    </div>
-  </div>
-</div>
+                  <!-- Dropdown -->
+                  <div
+                    @click.away="isOpen = false"
+                    @keydown.escape="isOpen = false"
+                    x-show.transition.opacity="isOpen"
+                    class="absolute mt-3 transform bg-white rounded-md shadow-lg -translate-x-3/4 min-w-max"
+                  >
+                    <div class="p-4 text-lg font-medium border-b">Web apps & services</div>
+                    <ul class="flex flex-col p-2 my-3 space-y-3">
+                      <li>
+                        <a href="#" class="flex items-start px-2 py-1 space-x-2 rounded-md hover:bg-gray-100">
+                          <span class="block mt-1">
+                            <svg
+                              class="w-6 h-6 text-gray-500"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z" />
+                              <path
+                                fill="#fff"
+                                d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                              />
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                              />
+                            </svg>
+                          </span>
+                          <span class="flex flex-col">
+                            <span class="text-lg">Atlassian</span>
+                            <span class="text-sm text-gray-400">Lorem ipsum dolor sit.</span>
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="flex items-start px-2 py-1 space-x-2 rounded-md hover:bg-gray-100">
+                          <span class="block mt-1">
+                            <svg
+                              class="w-6 h-6 text-gray-500"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                              />
+                            </svg>
+                          </span>
+                          <span class="flex flex-col">
+                            <span class="text-lg">Slack</span>
+                            <span class="text-sm text-gray-400"
+                              >Lorem ipsum, dolor sit amet consectetur adipisicing elit.</span
+                            >
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
+                      <a href="#">Show all apps</a>
+                    </div>
+                  </div>
+                </div>
 
+                <!-- Options Button -->
+                <div class="relative" x-data="{ isOpen: false }">
+                  <button
+                    @click="isOpen = !isOpen"
+                    class="p-2 bg-gray-100 rounded-full hover:bg-gray-200 focus:outline-none focus:ring"
+                  >
+                    <svg
+                      class="w-6 h-6 text-gray-500"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                      />
+                    </svg>
+                  </button>
 
-            </main>
+                  <!-- Dropdown card -->
+                  <div
+                    @click.away="isOpen = false"
+                    x-show.transition.opacity="isOpen"
+                    class="absolute w-40 max-w-sm mt-3 transform bg-white rounded-md shadow-lg -translate-x-3/4 min-w-max"
+                  >
+                    <div class="p-4 font-medium border-b">
+                      <span class="text-gray-800">Options</span>
+                    </div>
+                    <ul class="flex flex-col p-2 my-2 space-y-1">
+                      <li>
+                        <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Link</a>
+                      </li>
+                      <li>
+                        <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Another Link</a>
+                      </li>
+                    </ul>
+                    <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
+                      <a href="#">See All</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- avatar button -->
+              <div class="relative" x-data="{ isOpen: false }">
+                <button @click="isOpen = !isOpen" class="p-1 bg-gray-200 rounded-full focus:outline-none focus:ring">
+                  <img
+                    class="object-cover w-8 h-8 rounded-full"
+                    src="https://avatars0.githubusercontent.com/u/57622665?s=460&u=8f581f4c4acd4c18c33a87b3e6476112325e8b38&v=4"
+                    alt="Ahmed Kamel"
+                  />
+                </button>
+                <!-- green dot -->
+                <div class="absolute right-0 p-1 bg-green-400 rounded-full bottom-3 animate-ping"></div>
+                <div class="absolute right-0 p-1 bg-green-400 border border-white rounded-full bottom-3"></div>
+
+                <!-- Dropdown card -->
+                <div
+                  @click.away="isOpen = false"
+                  x-show.transition.opacity="isOpen"
+                  class="absolute mt-3 transform -translate-x-full bg-white rounded-md shadow-lg min-w-max"
+                >
+                  <div class="flex flex-col p-4 space-y-1 font-medium border-b">
+                    <span class="text-gray-800">Ahmed Kamel</span>
+                    <span class="text-sm text-gray-400">ahmed.kamel@example.com</span>
+                  </div>
+                  <ul class="flex flex-col p-2 my-2 space-y-1">
+                    <li>
+                      <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Link</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Another Link</a>
+                    </li>
+                  </ul>
+                  <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
+                    <a href="#">Logout</a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        </header>
+        <!-- Main content -->
+        <main class="flex-1 max-h-full p-5 overflow-hidden overflow-y-scroll">
+          <!-- Main content header -->
+          <div
+            class="flex flex-col items-start justify-between pb-6 space-y-4 border-b lg:items-center lg:space-y-0 lg:flex-row"
+          >
+            <h1 class="text-2xl font-semibold whitespace-nowrap">Dashboard</h1>
+            <a
+              href="https://github.com/Kamona-WD/starter-dashboard-layout"
+              target="_blank"
+              class="inline-flex items-center justify-center px-4 py-1 space-x-1 bg-gray-200 rounded-md shadow hover:bg-opacity-20"
+            >
+              <span>
+                <svg class="w-4 h-4 text-gray-500" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+                  ></path>
+                </svg>
+              </span>
+              <span>View on Github</span>
+            </a>
+          </div>
+
+          <!-- Start Content -->
+
+          <!-- Chart cards (Four columns grid) -->
+          <div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2 lg:grid-cols-4">
+            <!-- Users chart card -->
+            <a href="#" class="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
+              <div class="flex items-start">
+                <div class="flex flex-col flex-shrink-0 space-y-2">
+                  <span class="text-gray-400">Total Users</span>
+                  <span class="text-lg font-semibold">100,221</span>
+                </div>
+                <div class="relative min-w-0 ml-auto h-14">
+                  <canvas id="usersChart"></canvas>
+                </div>
+              </div>
+              <div>
+                <span class="inline-block px-2 text-sm text-white bg-green-300 rounded">14%</span>
+                <span>from 2019</span>
+              </div>
+            </a>
+
+            <!-- Sessions chart card -->
+            <a href="#" class="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
+              <div class="flex items-start">
+                <div class="flex flex-col flex-shrink-0 space-y-2">
+                  <span class="text-gray-400">Sessions</span>
+                  <span class="text-lg font-semibold">40%</span>
+                </div>
+                <div class="relative min-w-0 ml-auto h-14">
+                  <canvas id="sessionsChart"></canvas>
+                </div>
+              </div>
+              <div>
+                <span class="inline-block px-2 text-sm text-white bg-green-300 rounded">1.2%</span>
+                <span>from 2019</span>
+              </div>
+            </a>
+
+            <!-- Vists chart card -->
+            <a href="#" class="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
+              <div class="flex items-start">
+                <div class="flex flex-col flex-shrink-0 space-y-2">
+                  <span class="text-gray-400">Vists</span>
+                  <span class="text-lg font-semibold">300,527</span>
+                </div>
+                <div class="relative min-w-0 ml-auto h-14">
+                  <canvas id="vistsChart"></canvas>
+                </div>
+              </div>
+              <div>
+                <span class="inline-block px-2 text-sm text-white bg-green-300 rounded">10%</span>
+                <span>from 2019</span>
+              </div>
+            </a>
+
+            <!-- Articles chart card -->
+            <a href="#" class="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
+              <div class="flex items-start">
+                <div class="flex flex-col flex-shrink-0 space-y-2">
+                  <span class="text-gray-400">Articles</span>
+                  <span class="text-lg font-semibold">600,429</span>
+                </div>
+                <div class="relative min-w-0 ml-auto h-14">
+                  <canvas id="articlesChart"></canvas>
+                </div>
+              </div>
+              <div>
+                <span class="inline-block px-2 text-sm text-white bg-green-300 rounded">30%</span>
+                <span>from 2019</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Two columns grid -->
+          <div class="grid grid-cols-1 gap-6 mt-6 lg:grid-cols-2 xl:grid-cols-4">
+            <!-- Import data card -->
+            <div class="border rounded-lg shadow-sm">
+              <!-- Card header -->
+              <div class="flex items-center justify-between px-4 py-2 border-b">
+                <h5 class="font-semibold">Import Data</h5>
+                <!-- Dots button -->
+                <button class="p-2 rounded-full">
+                  <svg
+                    class="w-6 h-6 text-gray-600"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <p class="px-4 py-6 text-gray-600">See and talk to your users and import them into your platform.</p>
+              <ul class="px-4 pb-4 space-y-4 divide-y">
+                <h5 class="font-semibold">Import Users from:</h5>
+                <li class="flex items-start justify-between pt-4">
+                  <div class="flex items-start space-x-3">
+                    <!-- Twitter icon -->
+                    <span class="flex items-center pt-1">
+                      <svg fill="currentColor" class="w-5 h-5 text-blue-500">
+                        <path
+                          d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"
+                        ></path>
+                      </svg>
+                    </span>
+                    <div>
+                      <h5 class="font-semibold">Twitter</h5>
+                      <span class="text-sm font-medium text-gray-400">Users</span>
+                    </div>
+                  </div>
+                  <a href="#" class="flex items-center px-2 py-1 space-x-2 text-sm text-white bg-blue-600 rounded-md">
+                    <span>Launch</span>
+                    <span class="">
+                      <svg
+                        class="w-4 h-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                    </span>
+                  </a>
+                </li>
+                <li class="flex items-start justify-between pt-4">
+                  <div class="flex items-start space-x-3">
+                    <!-- Github icon -->
+                    <span class="flex items-center pt-1">
+                      <svg width="24" height="24" fill="currentColor" class="text-black">
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M12 2C6.477 2 2 6.463 2 11.97c0 4.404 2.865 8.14 6.839 9.458.5.092.682-.216.682-.48 0-.236-.008-.864-.013-1.695-2.782.602-3.369-1.337-3.369-1.337-.454-1.151-1.11-1.458-1.11-1.458-.908-.618.069-.606.069-.606 1.003.07 1.531 1.027 1.531 1.027.892 1.524 2.341 1.084 2.91.828.092-.643.35-1.083.636-1.332-2.22-.251-4.555-1.107-4.555-4.927 0-1.088.39-1.979 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.606 9.606 0 0112 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.022 2.747-1.022.546 1.372.202 2.386.1 2.638.64.696 1.028 1.587 1.028 2.675 0 3.83-2.339 4.673-4.566 4.92.359.307.678.915.678 1.846 0 1.332-.012 2.407-.012 2.734 0 .267.18.577.688.48C19.137 20.107 22 16.373 22 11.969 22 6.463 17.522 2 12 2z"
+                        ></path>
+                      </svg>
+                    </span>
+                    <div>
+                      <h5 class="font-semibold">Github</h5>
+                      <span class="text-sm font-medium text-gray-400">Users</span>
+                    </div>
+                  </div>
+                  <a href="#" class="flex items-center px-2 py-1 space-x-2 text-sm text-white bg-blue-600 rounded-md">
+                    <span>Launch</span>
+                    <span class="">
+                      <svg
+                        class="w-4 h-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                    </span>
+                  </a>
+                </li>
+                <li class="pt-4 text-sm font-medium text-gray-400">
+                  <p>
+                    Or you can
+                    <a href="#" class="font-normal text-blue-500 hover:underline whitespace-nowrap"
+                      >sync data to your dashboard</a
+                    >
+                    to ensure data is always up to date.
+                  </p>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Monthly chart card -->
+            <div class="border rounded-lg shadow-sm xl:col-span-3">
+              <!-- Card header -->
+              <div class="flex items-center justify-between px-4 py-2 border-b">
+                <h5 class="font-semibold">Monthly Expenses</h5>
+                <!-- Dots button -->
+                <button class="p-2 rounded-full">
+                  <svg
+                    class="w-6 h-6 text-gray-600"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <!-- Card content -->
+              <div class="flex items-center p-4 space-x-4">
+                <span class="text-3xl font-medium">45%</span>
+                <span class="flex items-center px-2 space-x-2 text-sm text-green-800 bg-green-100 rounded">
+                  <span>
+                    <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+                      <path
+                        fill-rule="evenodd"
+                        d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                  </span>
+                  <span>39.2%</span>
+                </span>
+              </div>
+              <!-- Chart -->
+              <div class="relative min-w-0 p-4 h-80">
+                <canvas id="updatingMonthlyChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Table see (https://tailwindui.com/components/application-ui/lists/tables) -->
+          <h3 class="mt-6 text-xl">Users</h3>
+          <div class="flex flex-col mt-6">
+            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+              <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                <div class="overflow-hidden border-b border-gray-200 rounded-md shadow-md">
+                  <table class="min-w-full overflow-x-scroll divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                      <tr>
+                        <th
+                          scope="col"
+                          class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                        >
+                          Name
+                        </th>
+                        <th
+                          scope="col"
+                          class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                        >
+                          Title
+                        </th>
+                        <th
+                          scope="col"
+                          class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                        >
+                          Status
+                        </th>
+                        <th
+                          scope="col"
+                          class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                        >
+                          Role
+                        </th>
+                        <th scope="col" class="relative px-6 py-3">
+                          <span class="sr-only">Edit</span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                      <template x-for="i in 10" :key="i">
+                        <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
+                          <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                              <div class="flex-shrink-0 w-10 h-10">
+                                <img
+                                  class="w-10 h-10 rounded-full"
+                                  src="https://avatars0.githubusercontent.com/u/57622665?s=460&u=8f581f4c4acd4c18c33a87b3e6476112325e8b38&v=4"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="ml-4">
+                                <div class="text-sm font-medium text-gray-900">Ahmed Kamel</div>
+                                <div class="text-sm text-gray-500">ahmed.kamel@example.com</div>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-900">Regional Paradigm Technician</div>
+                            <div class="text-sm text-gray-500">Optimization</div>
+                          </td>
+                          <td class="px-6 py-4 whitespace-nowrap">
+                            <span
+                              class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"
+                            >
+                              Active
+                            </span>
+                          </td>
+                          <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">Admin</td>
+                          <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                            <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                          </td>
+                        </tr>
+                      </template>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+        <!-- Main footer -->
+        <footer class="flex items-center justify-between flex-shrink-0 p-4 border-t max-h-14">
+          <div>K-WD &copy; 2020</div>
+          <div class="text-sm">
+            Made by
+            <a
+              class="text-blue-400 underline"
+              href="https://github.com/Kamona-WD"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Ahmed Kamel</a
+            >
+          </div>
+          <div>
+            <!-- Github svg -->
+            <a
+              href="https://github.com/Kamona-WD/starter-dashboard-layout"
+              target="_blank"
+              class="flex items-center space-x-1"
+            >
+              <svg class="w-6 h-6 text-gray-400" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path
+                  fill-rule="evenodd"
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+                ></path>
+              </svg>
+              <span class="hidden text-sm md:block">View on Github</span>
+            </a>
+          </div>
+        </footer>
       </div>
 
-      <!-- Panels -->
+      <!-- Setting panel button -->
+      <div>
+        <button
+          @click="isSettingsPanelOpen = true"
+          class="fixed right-0 px-4 py-2 text-sm font-medium text-white uppercase transform rotate-90 translate-x-8 bg-gray-600 top-1/2 rounded-b-md"
+        >
+          Settings
+        </button>
+      </div>
 
-      <!-- Settings Panel -->
-      <!-- Backdrop -->
+      <!-- Settings panel -->
       <div
         x-show="isSettingsPanelOpen"
-        class="fixed inset-0 bg-black bg-opacity-50"
-        @click="isSettingsPanelOpen = false"
-        aria-hidden="true"
-      ></div>
-      <!-- Panel -->
-      <section
-        x-transition:enter="transform transition-transform duration-300"
-        x-transition:enter-start="translate-x-full"
-        x-transition:enter-end="translate-x-0"
-        x-transition:leave="transform transition-transform duration-300"
-        x-transition:leave-start="translate-x-0"
-        x-transition:leave-end="translate-x-full"
-        x-show="isSettingsPanelOpen"
-        class="fixed inset-y-0 right-0 w-64 bg-white border-l border-primary-100 rounded-l-3xl"
+        @click.away="isSettingsPanelOpen = false"
+        x-transition:enter="transition transform duration-300"
+        x-transition:enter-start="translate-x-full opacity-30  ease-in"
+        x-transition:enter-end="translate-x-0 opacity-100 ease-out"
+        x-transition:leave="transition transform duration-300"
+        x-transition:leave-start="translate-x-0 opacity-100 ease-out"
+        x-transition:leave-end="translate-x-full opacity-0 ease-in"
+        class="fixed inset-y-0 right-0 flex flex-col bg-white shadow-lg bg-opacity-20 w-80"
+        style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"
       >
-        <div class="px-4 py-8">
-          <h2 class="text-lg font-semibold">Settings</h2>
+        <div class="flex items-center justify-between flex-shrink-0 p-2">
+          <h6 class="p-2 text-lg">Settings</h6>
+          <button @click="isSettingsPanelOpen = false" class="p-2 rounded-md focus:outline-none focus:ring">
+            <svg
+              class="w-6 h-6 text-gray-600"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
-      </section>
+        <div class="flex-1 max-h-full p-4 overflow-hidden hover:overflow-y-scroll">
+          <span>Settings Content</span>
+          <!-- Settings Panel Content ... -->
+        </div>
+      </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
+    <script src="/build/script.js"></script>
     <script>
       const setup = () => {
         return {
+          loading: true,
           isSidebarOpen: false,
-          currentSidebarTab: null,
-          isSettingsPanelOpen: false,
-          isSubHeaderOpen: false,
-          watchScreen() {
-            if (window.innerWidth <= 1024) {
-              this.isSidebarOpen = false
-            }
+          toggleSidbarMenu() {
+            this.isSidebarOpen = !this.isSidebarOpen
           },
+          isSettingsPanelOpen: false,
+          isSearchBoxOpen: false,
         }
       }
     </script>
+  </body>
+</html>
