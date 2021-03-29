@@ -18,7 +18,14 @@
     <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7037636/7862832/css/fonts.css" />
   </head>
   <body>
+
+    {% include "./partials/schooldescription.html" %}
+    {% include "./partials/criticalstepstimeline.html" %}
+    {% include "./businessplan/financialmodel.html" %}
+
     {{ content | safe }}
+
+
     <script src="/static/js/alpine.js"></script>
 
     {% if path == "home" %}
