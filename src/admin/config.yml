@@ -26,6 +26,7 @@ collections:
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "category", name: "category", widget: "string" }
       - { label: "image"}, name: "image", widget: "string" }
+      - { label: "Link"}, name: "link", widget: "string" }
       - widget: select
         label: "tags"
         name: "tags"

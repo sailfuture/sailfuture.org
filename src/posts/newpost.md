@@ -1,5 +1,5 @@
 ---
-title: <a href="https://www.tampabay.com/news/education/2021/06/16/tiny-private-school-aims-to-boost-struggling-pinellas-teens/">Tiny private school aims to boost struggling Pinellas teens</a>
+title: Tiny private school aims to boost struggling Pinellas teens
 description: The program will focus on giving students career skills in a real-life environment.
 imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613438809/SailFuture%20Academy/Website%20Image%20Collection/Image-4.png
 author: Tampa Bay Times
