@@ -11,7 +11,8 @@ programs:
 
   - name: SailFuture Academy
     category: Private School
-    description: "An all-boys private high school preparing students for careers and equipping them with the skills to navigate the transition to adulthood. "
+    description: "SailFuture Academy is a co-ed, tuition-free entrepreneurship high school that teaches students how to think critically and solve real world problems.
+Total Enrollment"
     url: /academy
     imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613417097/Image.png
     color: text-yellow-200
