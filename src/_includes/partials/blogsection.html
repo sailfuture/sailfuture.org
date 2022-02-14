@@ -14,6 +14,7 @@
       <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none md:max-w-none">
         {% set postslist = collections.post %}
           {% for post in postslist | reverse %}
+          <a href="{{ post.url | url }}">
           <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
             <div class="flex-shrink-0">
             <a href="{{ post.url | url }}">
@@ -25,13 +26,13 @@
                 <p class="text-sm font-medium text-blue-600">
                 </p>
                 <p class="text-xl tracking-tight text-gray-900 pb-6">
-                <a href="{{ post.url | url }}">
+                <!-- <a href="{{ post.url | url }}">
                   {% if post.data.title %}
                       {{ post.data.title }}
                   {% else %}
                       Untitled
                   {% endif %}
-              </a>
+              </a> -->
               </p>
               {% if post.data.description %}
               <p class="text-lg text-gray-500 mb-3">
@@ -62,6 +63,7 @@
               </div>
             </div>
           </div>
+        </a>
           {% endfor %}
       </div>
     </div>
