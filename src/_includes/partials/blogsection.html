@@ -25,7 +25,7 @@
                 <p class="text-sm font-medium text-blue-600">
                 </p>
                 <p class="text-xl tracking-tight text-gray-900 pb-6">
-                <a href="{{ post.data.articlelink }}" target="_blank">
+                <a href="{{ post.data.articlelink }}" target="_blank" class="hover:text-gray-600">
                   {% if post.data.title %}
                       {{ post.data.title }}
                   {% else %}
@@ -38,7 +38,7 @@
                   {{ post.data.description }}
               </p>
               {% endif %}
-              <p class="text-sm"><a href="{{ post.data.articlelink }}" target="_blank">Read More</a></p>
+              <p class="text-sm hover:text-blue-400"><a href="{{ post.data.articlelink }}" target="_blank">Read More</a></p>
               </div>
               <hr>
               <div class="mt-6 flex items-center">
