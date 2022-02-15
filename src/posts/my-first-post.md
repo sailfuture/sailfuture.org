@@ -5,7 +5,7 @@ imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1644883984/Sail-Fut
 author: Good Morning America
 articlelink: https://www.goodmorningamerica.com/news/video/teaching-life-skills-sailing-80478689
 authorlink: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1644884581/Gma_logo.jpg
-date: 2020-09-01
+date: 2022-01-10
 tags:
   - left
   - center
