@@ -439,7 +439,7 @@ path: academy
   @keydown.escape="showModal = false"
 >
     <!-- Trigger for Modal -->
-    <button type="button" @click="showModal = true">Open Modal</button>
+    <button type="button" x-show="open">Open Modal</button>
 
     <!-- Modal -->
     <div
