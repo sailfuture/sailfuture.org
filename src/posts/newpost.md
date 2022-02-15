@@ -3,6 +3,7 @@ title: Tiny private school aims to boost struggling Pinellas teens
 description: The program will focus on giving students career skills in a real-life environment.
 imageurl: https://s3.us-east-2.amazonaws.com/sailfuture.org/images/Untitled+design.png
 author: Tampa Bay Times
+articlelink: https://google.com
 date: 2021-06-16
 tags:
   - left

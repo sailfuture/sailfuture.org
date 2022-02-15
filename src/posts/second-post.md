@@ -4,6 +4,7 @@ description: In December of 2019, SailFuture became the owner of the historic No
 date: 2020-09-02
 imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613363288/SailFuture%20Academy/27220_5056.jpg
 author: Michael Long
+articlelink: https://google.com
 tags:
   - number-2
 ---
