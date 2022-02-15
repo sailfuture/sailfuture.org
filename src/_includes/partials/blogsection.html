@@ -16,7 +16,7 @@
           
           <div class="flex flex-col rounded-lg shadow-lg overflow-hidden hover:bg-slate-300">
             <div class="flex-shrink-0">
-            <a href="{{ post.data.articlelink }}">
+            <a href="{{ post.data.articlelink }}" target="_blank">
               <img class="h-48 w-full object-cover" src="{{ post.data.imageurl }}" alt="">
             </a>
             </div>
@@ -25,13 +25,13 @@
                 <p class="text-sm font-medium text-blue-600">
                 </p>
                 <p class="text-xl tracking-tight text-gray-900 pb-6">
-                <!-- <a href="{{ post.url | url }}">
+                <a href="{{ post.data.articlelink }}" target="_blank">
                   {% if post.data.title %}
                       {{ post.data.title }}
                   {% else %}
                       Untitled
                   {% endif %}
-              </a> -->
+              </a> 
               </p>
               {% if post.data.description %}
               <p class="text-lg text-gray-500 mb-3">
