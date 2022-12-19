@@ -1,6 +1,6 @@
 ---
 programs:
-  - name: SailFuture Academy
+  - name: SailFutureAcademy
     category: Private School
     description: "SailFuture Academy is a co-ed, tuition-free entrepreneurship high school that teaches students how to think critically and solve real world problems.
 Total Enrollment"
@@ -9,7 +9,7 @@ Total Enrollment"
     color: text-yellow-200
     bg-color: bg-yellow-400
 
-  - name: Mental Health
+  - name: MentalHealth
     category: Mental Health
     description: "Individualized approaches uniquely designed to engage hard to reach teens"
     url: /mentalhealth
@@ -25,7 +25,7 @@ Total Enrollment"
     color: text-blue-200
     bg-color: bg-blue-400
 
-- name: Social Enterprises
+  - name: Social Enterprises
     category: Social Enterprises
     description: "Residential programs licensed by the Department of Children and Families rooted in the transformative and therapeutic power of integrated school, therapy, job training, and 60-day international sailing journeys."
     url: /socialenterprises
@@ -34,7 +34,7 @@ Total Enrollment"
     bg-color: bg-blue-400
 
 
-- name: 
+  - name: Sailing Expeditions
     category: Sailing Expeditions
     description: "Residential programs licensed by the Department of Children and Families rooted in the transformative and therapeutic power of integrated school, therapy, job training, and 60-day international sailing journeys."
     url: /sailingexpeditions
