@@ -1,14 +1,5 @@
 ---
 programs:
-  - name: Case Management
-    category: Child Welfare
-    description: "Specialized wraparound approach for high-risk teens in foster care"
-    url: /casemanagement
-    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613417097/3220_4886.png
-    color: text-blue-200
-    bg-color: bg-blue-400
-
-
   - name: SailFuture Academy
     category: Private School
     description: "SailFuture Academy is a co-ed, tuition-free entrepreneurship high school that teaches students how to think critically and solve real world problems.
@@ -26,14 +17,6 @@ Total Enrollment"
     color: text-green-200
     bg-color: bg-green-400
 
-  - name: Life Skills Center
-    category: Child Welfare
-    description: "Accessible daytime supervision and support for youth in crisis"
-    url: /lifeskillscenter
-    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613417097/12919_3448.png
-    color: text-blue-200
-    bg-color: bg-blue-400
-
   - name: Residential Homes
     category: Child Welfare
     description: "Residential programs licensed by the Department of Children and Families rooted in the transformative and therapeutic power of integrated school, therapy, job training, and 60-day international sailing journeys."
@@ -42,10 +25,20 @@ Total Enrollment"
     color: text-blue-200
     bg-color: bg-blue-400
 
-  - name: Foster Parenting & Licensing
-    category: Child Welfare
-    description: "Helping families and individuals with room in their homes and hearts become foster parents"
-    url: /foster-parent
-    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1613417098/B___0076.png
+- name: Social Enterprises
+    category: Social Enterprises
+    description: "Residential programs licensed by the Department of Children and Families rooted in the transformative and therapeutic power of integrated school, therapy, job training, and 60-day international sailing journeys."
+    url: /socialenterprises
+    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1570762584/23919_3544.jpg
     color: text-blue-200
     bg-color: bg-blue-400
+
+
+- name: 
+    category: Sailing Expeditions
+    description: "Residential programs licensed by the Department of Children and Families rooted in the transformative and therapeutic power of integrated school, therapy, job training, and 60-day international sailing journeys."
+    url: /sailingexpeditions
+    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1570762584/23919_3544.jpg
+    color: text-blue-200
+    bg-color: bg-blue-400
+
