@@ -21,24 +21,24 @@ Total Enrollment"
     category: Child Welfare
     description: "Residential programs licensed by the Department of Children and Families rooted in the transformative and therapeutic power of integrated school, therapy, job training, and 60-day international sailing journeys."
     url: /residential
-    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1570762584/23919_3544.jpg
+    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/f_auto,q_auto:eco/v1570762797/23919_3544_large.jpg
     color: text-blue-200
     bg-color: bg-blue-400
 
   - name: Social Enterprises
     category: Social Enterprises
-    description: "Residential programs licensed by the Department of Children and Families rooted in the transformative and therapeutic power of integrated school, therapy, job training, and 60-day international sailing journeys."
+    description: "Our student run enterpises are the perfect way to teach students about business in a practical, hands-on and engaging way."
     url: /socialenterprises
-    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1570762584/23919_3544.jpg
+    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/f_auto,q_auto:eco/v1671684143/Frame_4.png
     color: text-blue-200
     bg-color: bg-blue-400
 
 
   - name: Sailing Expeditions
     category: Sailing Expeditions
-    description: "Residential programs licensed by the Department of Children and Families rooted in the transformative and therapeutic power of integrated school, therapy, job training, and 60-day international sailing journeys."
+    description: "Our comprehensive programming includes 60-day sailing journeys throughout the world, adventure-based mental health counseling, practical job training, and a hands-on technical high school."
     url: /sailingexpeditions
-    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/v1570762584/23919_3544.jpg
+    imageurl: https://res.cloudinary.com/dbhwzxw0k/image/upload/f_auto,q_auto:eco/v1671684142/Frame_2.png
     color: text-blue-200
     bg-color: bg-blue-400
 
