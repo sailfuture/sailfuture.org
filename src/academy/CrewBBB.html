@@ -3,5 +3,12 @@ layout: scores
 title:
 path:
 ---
+<script>
+    window.setInterval("reloadIFrame();", 30000);
+    
+    function reloadIFrame() {
+     document.frames["frame"].location.reload();
+    }
+    </script>
 
-<iframe src="https://coda.io/embed/OcGtelVaao/_sugSl?hideSections=true" width=540px height=1920px style="max-width:100%; transform: rotate(-90deg); margin:0; transform-origin: bottom right; position: absolute; top: -100vw; right: 0; height: 100vw; width: 100vh; overflow: visible;" allow="fullscreen"></iframe>
+<iframe id="frame" src="https://coda.io/embed/OcGtelVaao/_sugSl?hideSections=true" width=540px height=1920px style="max-width:100%; transform: rotate(-90deg); margin:0; transform-origin: bottom right; position: absolute; top: -100vw; right: 0; height: 100vw; width: 100vh; overflow: visible;" allow="fullscreen"></iframe>
