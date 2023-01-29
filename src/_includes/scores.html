@@ -17,30 +17,9 @@
     {% endif %}
     <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7037636/7862832/css/fonts.css" />
 
-    <style>
-    #screen-container-no-edit{
-        margin:0;
-        transform-origin: bottom right;
-        transform: rotate(-90deg)!important;
-        position: absolute;
-        top: -100vw;
-        right: 0;
-        height: 100vw;
-        width: 100vh;
-        overflow: visible;
-    }
-    </style>
-
   </head>
   <body>
-
-   <div class="screen-container-no-edit">
-    <div class="h-screen fullscreen w-full">
-      <div class="z-50 h-12 absolute w-full bg-white"></div>
     {{ content | safe }}
-  </div>
-</div>
-
     <script src="/static/js/alpine.js"></script>
     
   </body>
