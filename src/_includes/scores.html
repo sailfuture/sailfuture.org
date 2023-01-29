@@ -19,6 +19,12 @@
 
   </head>
   <body>
+    <script>
+    setTimeout(function(){
+      window.location.reload();
+   }, 5000);
+   </script>
+
     {{ content | safe }}
     <script src="/static/js/alpine.js"></script>
     
