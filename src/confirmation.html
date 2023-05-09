@@ -27,14 +27,16 @@ path: confirmation
         <div class="divide-y divide-gray-200">
           <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
             <p class="text-bold">Limited seats are available for the upcoming '23-'24 school year. </p>
-            <p>To secure your spot, we highly recommend scheduling a tour of our campus. Please choose a convenient date and time from the calendar below to book your tour.
-              
-              <!-- Calendly link widget begin -->
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-<a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/sailfuture-academy/sfa-academy-enrollment-application?hide_event_type_details=1&hide_gdpr_banner=1'});return false;">Schedule A Campus Tour</a>
-<!-- Calendly link widget end -->
-            
+            <p>To secure your spot, we highly recommend scheduling a tour of our campus. Please click the link below to schedule.
+
+<div class="rounded-md bg-blue-600 p-4 hover:text-blue-500">
+  <div class="flex">
+    <div class="ml-3">
+      <a href="" class="hover:text-blue-500" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/sailfuture-academy/sfa-academy-enrollment-application?hide_event_type_details=1&hide_gdpr_banner=1'});return false;"><h3 class="text-lg font-bold text-gray-50 hover:text-blue-100">Click to Schedule A Campus Tour</h3></a>
+    </div>
+  </div>
+</div>
+          
 
           </div>
           <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
