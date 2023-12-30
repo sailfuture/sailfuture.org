@@ -17,9 +17,9 @@ path: academy-form
         <div class="max-w-md mx-auto sm:max-w-lg lg:mx-0">
           <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">SailFuture Academy '23-'24 Enrollment Information Request</h2>
           <p class="mt-4 text-md text-gray-500 sm:mt-3 pb-6">
-            An admission representative will reach out to you directly to learn more about your student and their home life. 
+            Complete the form below and an admission representative will reach out to you directly to discuss enrollment opportunities for your student.
             <br><br>
-            Our representative will also ask about previous educational experiences, behavioral interactions, areas of both strength and opportunity, and some information about parental employment, for the purposes of assisting with scholarship eligibility.
+            Enrollment for the upcoming school year is limited. For a faster response, please call or text us at (727) 307-5855
           </p>
           <form action="/confirmation" data-netlify="true" id="admission-form" name="Admission Submissions 2" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
             <div>
@@ -51,9 +51,15 @@ path: academy-form
 
             <fieldset class="sm:col-span-2 mb-6">
                 <legend class="block text-sm font-medium text-gray-700">
-                  Which grade will your student be entering in August 2022?
+                  Which grade will your student be entering in August 2023?
                 </legend>
                 <div class="mt-4 grid grid-cols-2 gap-y-4">
+                  <div class="flex items-center">
+                    <input id="9th" name="Student Grade" value="9th Grade" type="radio" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
+                    <label for="9th Grade" class="ml-3">
+                      <span class="block text-sm text-gray-700">8th</span>
+                    </label>
+                  </div>
                   <div class="flex items-center">
                     <input id="9th" name="Student Grade" value="9th Grade" type="radio" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
                     <label for="9th Grade" class="ml-3">
@@ -99,7 +105,7 @@ path: academy-form
         
               <div class="sm:col-span-2">
                 <div class="flex justify-between">
-                  <label for="how_can_we_help" class="block text-sm font-medium text-gray-700">How can we help you?</label>
+                  <label for="how_can_we_help" class="block text-sm font-medium text-gray-700">Please tell us about your student.</label>
                   <span id="how_can_we_help_description" class="text-sm text-gray-500">Max. 500 characters</span>
                 </div>
                 <div class="mt-1">
