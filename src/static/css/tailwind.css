@@ -5,7 +5,9 @@
 /*Your Custom CSS Goes here*/
 
 * {
-  font-family: "Gotham A", "Gotham B";
+  font-family: "Inter Tight", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
   font-style: normal;
 }
 
