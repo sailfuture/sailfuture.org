@@ -1,60 +1,52 @@
-# Neat Starter
+# Radiant
 
-Starter Template for **N**etlify CMS, **E**leventy, **A**lphine JS & **T**ailwind CSS
+Radiant is a [Tailwind UI](https://tailwindui.com) site template built using [Tailwind CSS](https://tailwindcss.com) and [Next.js](https://nextjs.org), with a blog powered by [Sanity](https://www.sanity.io).
 
-## Live Demo
+## Getting started
 
-[https://neat-starter.netlify.app/](https://neat-starter.netlify.app/)
+To get started with this template, first install the npm dependencies:
 
-### Technologies used:
-
-- [Netlify CMS](https://www.netlifycms.org/)
-- [Eleventy](https://www.11ty.dev/)
-- [Alpine.js](https://github.com/alpinejs/alpine)
-- [Tailwind CSS](https://tailwindcss.com/)
-
-| ![image](https://user-images.githubusercontent.com/1884712/93762662-a62e4700-fc2d-11ea-9b2c-fda9f503402b.png) |
-| ------------------------------------------------------------------------------------------------------------- |
-
-
-<a href="https://app.netlify.com/start/deploy?repository=https://github.com/surjithctly/neat-starter&amp;stack=cms"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" /></a>
-
-## Getting Started
-
-Detailed instructions are available in my blog. [Check it out](https://blog.surjithctly.in/neat-stack-create-a-static-website-with-netlify-cms-eleventy-alpinejs-and-tailwindcss)
-
-### 1\. Clone this Repository
-
-```
-git clone https://github.com/surjithctly/neat-starter.git
-```
-
-### 2\. Navigate to the directory
-
-```
-cd neat-starter
-```
-
-### 3\. Install dependencies
-
-```
+```bash
 npm install
 ```
 
-### 4\. Build the project to generate the first CSS
+Next, create a new Sanity project to power the blog within this template:
 
-This step is only required the very first time.
-
-```
-npm run build
+```bash
+npm create sanity@latest -- --env=.env.local --create-project "Radiant Blog" --dataset production
 ```
 
-### 5\. Run Eleventy
+This will prompt you to create a new Sanity account if you don't have one already. When asked "Would you like to add configuration files for a Sanity project in this Next.js folder?", choose "n".
 
+Next, optionally import the demo seed data for the blog:
+
+```bash
+npx sanity@latest dataset import seed.tar.gz
 ```
-npm run start
+
+Next, run the development server:
+
+```bash
+npm run dev
 ```
 
-## Author
+Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
 
-Surjith S M ( [@surjithctly](https://surjithctly.in/) )
+To manage your blog content, visit the embedded Sanity Studio at [http://localhost:3000/studio](http://localhost:3000/studio).
+
+## Customizing
+
+You can start editing this template by modifying the files in the `/src` folder. The site will auto-update as you edit these files.
+
+## License
+
+This site template is a commercial product and is licensed under the [Tailwind UI license](https://tailwindui.com/license).
+
+## Learn more
+
+To learn more about the technologies used in this site template, see the following resources:
+
+- [Tailwind CSS](https://tailwindcss.com/docs) - the official Tailwind CSS documentation
+- [Next.js](https://nextjs.org/docs) - the official Next.js documentation
+- [Headless UI](https://headlessui.dev) - the official Headless UI documentation
+- [Sanity](https://www.sanity.io) - the Sanity website
