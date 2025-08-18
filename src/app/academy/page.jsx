@@ -17,6 +17,7 @@ import { StarIcon } from '@heroicons/react/20/solid'
 import { CheckIcon } from '@heroicons/react/20/solid'
 import { LogoCloud } from '@/components/logo-cloud'
 import { CTA } from '@/components/cta'
+import { Standards } from '@/components/standards'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -81,6 +82,10 @@ function HeroAcademy() {
       </Container>
     </div>
   )
+}
+
+function Standards() {
+
 }
 
 function Header() {
