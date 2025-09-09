@@ -1,19 +1,17 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: {
-    mode: "all",
-    content: ["./**/*.html"],
-    options: {
-      whitelist: [],
-    },
-  },
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
-    container: {
-      center: true,
-    },
     extend: {
-      colors: {},
+      fontFamily: {
+        sans: 'Switzer, system-ui, sans-serif',
+      },
+      borderRadius: {
+        '4xl': '2rem',
+      },
     },
   },
-  variants: {},
-  plugins: [require("@tailwindcss/typography", '@tailwindcss/forms')],
-};
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
+}
